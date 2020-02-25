@@ -152,6 +152,7 @@ body main form#filter {
       grid-template-columns: 1fr 7fr;
   -ms-grid-rows: (25px)[12];
       grid-template-rows: repeat(12, 25px);
+  color: #fff;
 }
 
 body main form#filter input {
@@ -160,19 +161,50 @@ body main form#filter input {
   grid-column: 1/span 1;
 }
 
-body main form#filter input#searchBar {
-  -ms-grid-column: 1;
+body main form#filter input[type="text"] {
+  -ms-grid-column: 2;
   -ms-grid-column-span: 2;
-  grid-column: 1/span 2;
+  grid-column: 2/span 2;
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+  -webkit-box-shadow: 0px 0px 0px transparent;
+          box-shadow: 0px 0px 0px transparent;
+  border: 1px solid #2E2E31;
+  text-shadow: 0px 0px 0px transparent;
+  width: 300px;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+  width: 300px;
+  height: 25px;
+  border: none;
+  float: left;
+  color: #ccc;
+  padding-left: 15px;
+  border-radius: 2px;
 }
 
-body main form#filter input#applyFilterBtn {
+body main form#filter input[type="text"]:hover {
+  background: #ccc;
+  color: #2E2E31;
+}
+
+body main form#filter input[type="submit"] {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-column: 2 / span 1;
   -ms-grid-row: 4;
   -ms-grid-row-span: 1;
   grid-row: 4 / span 1;
+  background: #ccc;
+  -webkit-box-shadow: 0px 0px 0px transparent;
+          box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+}
+
+body main form#filter input[type="submit"]:hover {
+  background: #666;
 }
 
 body main form#filter label {
