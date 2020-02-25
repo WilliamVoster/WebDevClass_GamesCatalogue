@@ -72,6 +72,8 @@ $result = mysqli_query($conn, $sql);
             filer<br>
             settings <br>
             **<br>
+            aaaaaand we need a search bar with nice styling:) <br>
+            woooo and then we can add icons:))
         </div>
 
         <div id="gallery">
