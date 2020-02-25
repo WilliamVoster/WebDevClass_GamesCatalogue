@@ -48,7 +48,22 @@ $result = mysqli_query($conn, $sql);
         </nav>
 
         
-        <span>Welcome user!</span>
+        <span>
+            <ul>
+            <?php
+
+            if(!isset($_SESSION)){
+                echo "<li><a href=\"./login.php\">Log in</a></li>";
+                echo "<li><a href=\"./register.php\">Register</a></li>";
+            }else{
+                echo  "Welcome " . $_SESSION["username"] . "!";
+            }
+            
+            ?>
+            </ul>
+        </span>
+   
+    
     </header>
 
     <main>
