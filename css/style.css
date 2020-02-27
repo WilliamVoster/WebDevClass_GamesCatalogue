@@ -148,8 +148,8 @@ body main form#filter {
   height: 300px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 7fr;
-      grid-template-columns: 1fr 7fr;
+  -ms-grid-columns: 25.5px 1fr;
+      grid-template-columns: 25.5px 1fr;
   -ms-grid-rows: (25px)[12];
       grid-template-rows: repeat(12, 25px);
   color: #fff;
@@ -162,31 +162,37 @@ body main form#filter input {
 }
 
 body main form#filter input[type="text"] {
-  -ms-grid-column: 2;
+  -ms-grid-column: 1;
   -ms-grid-column-span: 2;
-  grid-column: 2/span 2;
+  grid-column: 1/span 2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / span 1;
   font-family: "Roboto", sans-serif;
   font-size: 1em;
-  -webkit-box-shadow: 0px 0px 0px transparent;
-          box-shadow: 0px 0px 0px transparent;
-  border: 1px solid #2E2E31;
-  text-shadow: 0px 0px 0px transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  text-shadow: none;
   width: 300px;
   vertical-align: middle;
   white-space: nowrap;
   position: relative;
-  width: 300px;
-  height: 25px;
-  border: none;
-  float: left;
-  color: #ccc;
-  padding-left: 15px;
+  padding-left: 30px;
   border-radius: 2px;
 }
 
-body main form#filter input[type="text"]:hover {
+body main form#filter img {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / span 1;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / span 1;
+  width: 14px;
+  z-index: 1;
+  padding: .33em;
   background: #ccc;
-  color: #2E2E31;
 }
 
 body main form#filter input[type="submit"] {
@@ -196,15 +202,20 @@ body main form#filter input[type="submit"] {
   -ms-grid-row: 4;
   -ms-grid-row-span: 1;
   grid-row: 4 / span 1;
-  background: #ccc;
-  -webkit-box-shadow: 0px 0px 0px transparent;
-          box-shadow: 0px 0px 0px transparent;
-  border: 0px solid transparent;
-  text-shadow: 0px 0px 0px transparent;
+  background: #2E2E31;
+  color: #abc;
+  font-size: 1em;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  text-shadow: none;
+  border: 1px solid #2E2E31;
+  border-radius: 2px;
+  width: 80px;
 }
 
 body main form#filter input[type="submit"]:hover {
-  background: #666;
+  background: #abc;
+  color: #2E2E31;
 }
 
 body main form#filter label {
@@ -214,9 +225,9 @@ body main form#filter label {
 }
 
 body footer {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  display: block;
+  background: #2E2E31;
+  color: #666;
 }
 
 * {

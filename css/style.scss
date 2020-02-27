@@ -19,7 +19,7 @@ body{
     height: 100vh;
 
     color: $a;
-    // background: $b;
+    //background: $b;
     background-image: linear-gradient(45deg, $e, $b);
 
     font-family: 'Roboto', sans-serif;
@@ -165,7 +165,7 @@ body{
             height: 300px;
 
             display: grid;
-            grid-template-columns: 1fr 7fr;
+            grid-template-columns: 25.5px 1fr; // 1fr 7fr;
             // grid-template-rows: 25px 25px auto;
             grid-template-rows: repeat(12, 25px);
             
@@ -174,50 +174,74 @@ body{
             input{
                 grid-column: 1/span 1;
             }
+            // input[type="checkbox"]:hover, input[type="radio"]:hover{
+            //     background: red;
+            // }
+            label{
+                //background: red;
+            }
             input[type="text"]{
-                grid-column: 2/span 2;
+                grid-column: 1/span 2;
+                grid-row: 1 / span 1;
 
                 // background: transparent;
                 // color: $a;
                 font-family: "Roboto", sans-serif;
                 font-size: 1em;
 
-                box-shadow: 0px 0px 0px transparent;
-                border: 1px solid $c;
-                text-shadow: 0px 0px 0px transparent;
+                box-shadow: none;
+                border: none;
+                text-shadow:none;
 
                 width: 300px;
                 vertical-align: middle;
                 white-space: nowrap;
                 position: relative;
 
-                width: 300px;
-                height: 25px;
-                border: none;
-                //font-size: 10pt;
-                float: left;
-                color: $d;
-                padding-left: 15px;
+                //color: $d;
+                padding-left: 30px;
                 -webkit-border-radius: 5px;
                 -moz-border-radius: 5px;
                 border-radius: 2px;
             }
+            input[type="text"]::placeholder{
+                //color: $c;
+            }
             input[type="text"]:hover{
                 //text-decoration: underline;
-                background: $d;
-                color: $c;
+                // background: $d;
+                //text-decoration: underline;
+                //color: $c;
+            }
+            img{
+                grid-column: 1 / span 1;
+                grid-row: 1 / span 1;
+                // width: 20px;
+                width: 14px;
+                z-index: 1;
+                // padding: .15em;
+                padding: .33em;
+                background:$d;
+                
+                
             }
             input[type="submit"]{
                 grid-column: 2 / span 1;
                 grid-row: 4 / span 1;
 
-                background: $d;
-                box-shadow: 0px 0px 0px transparent;
-                border: 0px solid transparent;
-                text-shadow: 0px 0px 0px transparent;
+                background: $c;
+                color: $b;
+                font-size: 1em;
+                box-shadow: none;
+                text-shadow: none;
+                border: 1px solid $c;
+                border-radius: 2px;
+                width: 80px;
             }
             input[type="submit"]:hover{
-                background: $f;
+                background: $b;
+                color: $c;
+                //border: 1px solid $c;
             }     
             label{
                 grid-column: 2/span 1;
@@ -229,7 +253,9 @@ body{
     }
 
     footer{
-        justify-content: flex-end;
+        display: block;
+        background: $c;
+        color: $f;
     }
 }
 
