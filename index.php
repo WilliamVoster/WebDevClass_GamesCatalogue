@@ -1,8 +1,10 @@
 <?php
 
-$server   = "localhost"; // essexweb something...something
+// M:\>mysqld --host=cseemyweb.essex.ac.uk -u tv19295 -p
+
+$server   = "localhost"; // cseemyweb.essex.ac.uk
 $username = "root";
-$password = "";
+$password = ""; // 6LXLZTzFqdKle
 $database = "assignment2020";
 $log = "";
 
@@ -48,7 +50,22 @@ $result = mysqli_query($conn, $sql);
         </nav>
 
         
-        <span>Welcome user!</span>
+        <span>
+            <ul>
+            <?php
+
+            if(!isset($_SESSION)){
+                echo "<li><a href=\"./login.php\">Log in</a></li>";
+                echo "<li><a href=\"./register.php\">Register</a></li>";
+            }else{
+                echo  "Welcome " . $_SESSION["username"] . "!";
+            }
+            
+            ?>
+            </ul>
+        </span>
+   
+    
     </header>
 
     <main>

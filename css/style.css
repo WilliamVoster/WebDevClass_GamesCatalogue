@@ -15,7 +15,7 @@ body {
           flex-direction: column;
   height: 100vh;
   color: #fff;
-  background: #abc;
+  background-image: linear-gradient(45deg, #000, #abc);
   font-family: 'Roboto', sans-serif;
   max-width: 100%;
   overflow-x: hidden;
@@ -31,13 +31,10 @@ body header {
           flex-direction: row;
   width: 100vw;
   padding: .5em 0;
-  background: #999;
-}
-
-body header nav {
-  -webkit-box-flex: 3;
-      -ms-flex-positive: 3;
-          flex-grow: 3;
+  background: #2E2E31;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 body header nav ul {
@@ -52,22 +49,37 @@ body header nav ul {
 
 body header nav ul li a {
   color: #fff;
-  width: 100px;
-  height: 135px;
+  text-decoration: underline;
   padding: 1em .5em .5em .5em;
 }
 
 body header nav ul li a:hover {
   background: #abc;
+  color: #2E2E31;
 }
 
-body header span {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+body header span ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+body header span ul li a {
+  color: #fff;
+  text-decoration: underline;
+  padding: 1em .5em .5em .5em;
+}
+
+body header span ul li a:hover {
+  background: #abc;
+  color: #2E2E31;
 }
 
 body main {
@@ -113,7 +125,7 @@ body main div#gallery ul {
 body main div#gallery ul li {
   width: 350px;
   height: 200px;
-  background: #ccc;
+  background-image: linear-gradient(45deg, #abc, yellow);
   margin: .5em;
   border-radius: 5px;
   -webkit-transition: all .4s ease;
@@ -125,7 +137,7 @@ body main div#gallery ul li a {
 }
 
 body main div#gallery ul li:hover {
-  background: red;
+  background-image: linear-gradient(225deg, #abc, red);
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
@@ -150,6 +162,10 @@ body footer {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+}
+
+* {
+  scrollbar-width: none;
 }
 
 @media only screen and (max-width: 600px) {
