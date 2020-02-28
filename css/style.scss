@@ -13,6 +13,7 @@ $e: #000;
 $f: #666;
 $g: #0005;
 $h: $b - $c;
+$i: #355;
 
 body{
     
@@ -117,8 +118,8 @@ body{
                     width: 350px;
                     height: 200px;
 
-                    display: flex;
-                    flex-direction: column;
+                    // display: flex;
+                    // flex-direction: column;
 
                     // background: $d;
                     background-image: linear-gradient(45deg, $b, #ff6);
@@ -130,11 +131,34 @@ body{
                     transition: all .4s ease;
 
                     a{
+                        display: flex;
+                        justify-content: center;
+                        position: relative;
+                        top: 0;
                         // flex-grow: 1;
-                        width: 100%;
-                        color: $f;
-                        padding: 2em 0;
+                        //width: 100%;
+                        color: $a;
+                        background: $i;
+                        //border: 2px solid $i;
+                        //height: 100%;
+                        //padding: 2em 0;
                         text-align: center;
+                        // z-index: 2;
+
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;
+                    }
+                    img{
+                        position: relative;
+                        cursor: pointer;
+                        //top: -19px;
+                        //top: -100%;
+                        width: 100%;
+                        height: 90.5%;
+                        // border-radius: 5px;
+                        border-bottom-left-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                        z-index: 2;
                     }
 
                 }
@@ -255,63 +279,6 @@ body{
 
 *{
     scrollbar-width: none;
-}
-
-#logo {
-    animation: wipe 0.3s 1;
-    animation-delay: 0s;
-    animation-direction: linear;
-  
-  &:hover {
-    animation: wipe 0.6s 1;
-  }
-}
-
-h1 {
-  width:123px; height:40px;
-  font-size: 1.3em;
-  &:hover {
-    animation: swipe 0.3s 1;
-    animation-delay: 0s;
-    animation-direction: linear;
-  }
-}
-
-body{
-    main{
-        div#gallery{
-            ul{
-                li:hover{
-                    // background: red;
-                    //animation: wipe 0.2s 1;
-                }
-            }
-        }
-    }
-}
-
-
-@keyframes wipe {
-
-  @for $i from 0 through 100 {
-    $s: $i + "%";
-    #{$s} { 
-      -webkit-mask: -webkit-gradient(radial, 157 157, $i, 167 167, $i+123, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0)), to(rgb(0, 0, 0))); // yuck! why doesn't prefixfree works?
-      mask: gradient(radial, 157 157, $i, 167 167, $i+123, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0)), to(rgb(0, 0, 0)));
-    }
-  }
-
-}
-
-@keyframes swipe {
-
-  @for $i from 0 through 100 {
-    $s: $i + "%";
-    #{$s} { 
-      -webkit-mask: -webkit-gradient(radial, 10 10, $i+23, 20 20, $i+38, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0)), to(rgb(0, 0, 0))); // yuck! why doesn't prefixfree works?
-    }
-  }
-
 }
 
 

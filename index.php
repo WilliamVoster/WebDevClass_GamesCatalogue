@@ -27,7 +27,7 @@ $result = mysqli_query($conn, $sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./">
+    <!-- <link rel="stylesheet" href="./"> -->
     <title>Home</title>
 </head>
 <body>
@@ -82,7 +82,11 @@ $result = mysqli_query($conn, $sql);
                 if(mysqli_num_rows($result) > 0){
                     while($row = mysqli_fetch_assoc($result)){
     
-                        echo "<li><a href=\"./games/" . "#" . "\">" . $row["title"] . "</a></li>";
+                        echo 
+                        "<li id =\"" . $row["id"] . "\">" .
+                            "<a href=\"./games/" . "#" . "\">" . $row["title"] . "</a>" .
+                            "<img src=\"" . $row["image"] . "\">" .
+                        "</li>";
                     }
                 }else{
                     $log = $log . "<br>0 results";
@@ -113,6 +117,9 @@ $result = mysqli_query($conn, $sql);
             <li>github.com/WilliamVoster</li>
         </ul>
     </footer>
+
+    <script src="./main.js"></script>
+    
 </body>
 </html>
 
