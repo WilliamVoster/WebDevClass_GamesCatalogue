@@ -145,6 +145,7 @@ body main div#gallery ul li a {
   top: 0;
   color: #fff;
   background: #355;
+  font-size: .9em;
   text-align: center;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -183,6 +184,7 @@ body main form#filter input {
   -ms-grid-column: 1;
   -ms-grid-column-span: 1;
   grid-column: 1/span 1;
+  margin: auto;
 }
 
 body main form#filter input[type="text"] {
@@ -213,9 +215,9 @@ body main form#filter img {
   -ms-grid-row: 1;
   -ms-grid-row-span: 1;
   grid-row: 1 / span 1;
-  width: 14px;
+  width: 12px;
   z-index: 1;
-  padding: .35em;
+  padding: .32em;
   background: #ccc;
 }
 
@@ -235,6 +237,7 @@ body main form#filter input[type="submit"] {
   border: 1px solid #2E2E31;
   border-radius: 2px;
   width: 80px;
+  margin: 0;
 }
 
 body main form#filter input[type="submit"]:hover {

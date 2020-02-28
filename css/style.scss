@@ -139,6 +139,7 @@ body{
                         //width: 100%;
                         color: $a;
                         background: $i;
+                        font-size: .9em;
                         //border: 2px solid $i;
                         //height: 100%;
                         //padding: 2em 0;
@@ -189,6 +190,7 @@ body{
 
             input{
                 grid-column: 1/span 1;
+                margin: auto;
             }
             // input[type="checkbox"]:hover, input[type="radio"]:hover{
             //     background: red;
@@ -233,10 +235,10 @@ body{
                 grid-column: 1 / span 1;
                 grid-row: 1 / span 1;
                 // width: 20px;
-                width: 14px;
+                width: 12px;
                 z-index: 1;
                 // padding: .15em;
-                padding: .35em; //.33em;
+                padding: .32em;//.35em; //.33em;
                 background:$d;
                 
                 
@@ -253,6 +255,7 @@ body{
                 border: 1px solid $c;
                 border-radius: 2px;
                 width: 80px;
+                margin: 0;
             }
             input[type="submit"]:hover{
                 cursor: pointer;
