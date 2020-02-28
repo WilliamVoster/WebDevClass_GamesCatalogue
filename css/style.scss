@@ -11,6 +11,8 @@ $c: #2E2E31;//#999;
 $d: #ccc;
 $e: #000;
 $f: #666;
+$g: #0005;
+$h: $b - $c;
 
 body{
     
@@ -18,9 +20,9 @@ body{
     flex-direction: column;
     height: 100vh;
 
-    color: $a;
-    //background: $b;
-    background-image: linear-gradient(45deg, $e, $b);
+    color: $c;
+    background: $h;
+    //background-image: linear-gradient(45deg, $e, $b);
 
     font-family: 'Roboto', sans-serif;
 
@@ -108,26 +110,37 @@ body{
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
-                // justify-content: space-between;
+                justify-content: center;
 
 
                 li{
                     width: 350px;
                     height: 200px;
+
+                    display: flex;
+                    flex-direction: column;
+
                     // background: $d;
                     background-image: linear-gradient(45deg, $b, #ff6);
                     margin: .5em;
                     border-radius: 5px;
+
+                    box-shadow: -3px 5px 2px $g;
             
                     transition: all .4s ease;
 
                     a{
-                        color: $a;
+                        // flex-grow: 1;
+                        width: 100%;
+                        color: $f;
+                        padding: 2em 0;
+                        text-align: center;
                     }
+
                 }
                 li:hover{
                     // background-image: linear-gradient(225deg, $b, red);
-                    background-image: linear-gradient(225deg, $b, #0F6);
+                    //background-image: linear-gradient(225deg, $b, #0F6);
                     // transform: scale(1.05)
                     transform: scaleX(1.05) scaleY(1.09);
                 }
@@ -135,28 +148,7 @@ body{
             }
 
         }
-        // form#filter{
-        //     grid-column: 2/span 1;
-        //     // display: flex;
-        //     // flex-direction: column;
-        //     // height: 400px;
-        //     // margin: .5em;
-        //     // color: $e;
 
-        //     border-left: 1px solid $c;
-
-
-        //     display: flex;
-        //     flex-direction: row;
-        //     flex-wrap: wrap;
-
-        //     height: auto;
-
-        //     input{
-        //         height: 25px;
-        //     }
-
-        // }
         form#filter{
             grid-column: 2/span 1;
 
@@ -220,7 +212,7 @@ body{
                 width: 14px;
                 z-index: 1;
                 // padding: .15em;
-                padding: .33em;
+                padding: .35em; //.33em;
                 background:$d;
                 
                 
@@ -239,8 +231,9 @@ body{
                 width: 80px;
             }
             input[type="submit"]:hover{
-                background: $b;
-                color: $c;
+                cursor: pointer;
+                //background: $b;
+                //color: $c;
                 //border: 1px solid $c;
             }     
             label{
@@ -263,6 +256,64 @@ body{
 *{
     scrollbar-width: none;
 }
+
+#logo {
+    animation: wipe 0.3s 1;
+    animation-delay: 0s;
+    animation-direction: linear;
+  
+  &:hover {
+    animation: wipe 0.6s 1;
+  }
+}
+
+h1 {
+  width:123px; height:40px;
+  font-size: 1.3em;
+  &:hover {
+    animation: swipe 0.3s 1;
+    animation-delay: 0s;
+    animation-direction: linear;
+  }
+}
+
+body{
+    main{
+        div#gallery{
+            ul{
+                li:hover{
+                    // background: red;
+                    //animation: wipe 0.2s 1;
+                }
+            }
+        }
+    }
+}
+
+
+@keyframes wipe {
+
+  @for $i from 0 through 100 {
+    $s: $i + "%";
+    #{$s} { 
+      -webkit-mask: -webkit-gradient(radial, 157 157, $i, 167 167, $i+123, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0)), to(rgb(0, 0, 0))); // yuck! why doesn't prefixfree works?
+      mask: gradient(radial, 157 157, $i, 167 167, $i+123, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0)), to(rgb(0, 0, 0)));
+    }
+  }
+
+}
+
+@keyframes swipe {
+
+  @for $i from 0 through 100 {
+    $s: $i + "%";
+    #{$s} { 
+      -webkit-mask: -webkit-gradient(radial, 10 10, $i+23, 20 20, $i+38, from(rgb(0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0)), to(rgb(0, 0, 0))); // yuck! why doesn't prefixfree works?
+    }
+  }
+
+}
+
 
 @media only screen and (max-width: 600px) {
     body {

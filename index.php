@@ -67,14 +67,14 @@ $result = mysqli_query($conn, $sql);
     </header>
 
     <main>
-        <div id="filter">
-            some<br>
-            filer<br>
-            settings <br>
-            **<br>
-            aaaaaand we need a search bar with nice styling:) <br>
-            woooo and then we can add icons:))
-        </div>
+        <form id="filter" action="#" method="GET">
+            <!-- <span class="icon"><i class="fa fa-search">icon</i></span> -->
+            <img src="./media/search-icon.svg" alt="search icon">
+            <input type="text" placeholder="Search" name="search">
+            <input type="checkbox" id="inputCheck"><label for="inputCheck">check</label>
+            <input type="radio" id="inputRadio"><label for="inputRadio">radio</label>
+            <input type="submit" name="applyFilter" id="applyFilter" value="Search">
+        </form>
 
         <div id="gallery">
             <ul>
@@ -105,8 +105,13 @@ $result = mysqli_query($conn, $sql);
     
     
     <footer>
-        footer
-        <?php echo "-- " . $log;?>
+        <?php echo "--> " . $log;?>
+        <ul>
+            <li>Web development assignmet 2020</li>
+            <li>University Of Essex CE154</li>
+            <li>Thor William Voster</li>
+            <li>github.com/WilliamVoster</li>
+        </ul>
     </footer>
 </body>
 </html>
