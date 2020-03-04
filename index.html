@@ -14,7 +14,8 @@
                 <li><a href="./index.php">Home</a></li>
                 <li><a href="./bookmark.php">Bookmarks</a></li>
                 <li><a href="./review">Write review</a></li>
-                <li><a href="./about.php">About</a></li>
+                <!-- <li><a href="./about.php">About</a></li> -->
+                <li><a href="" id="test">About</a></li>
             </ul>
         </nav>
 
@@ -29,29 +30,43 @@
     </header>
 
     <main>
-        <span>main</span>
+
+        <form id="filter" action="#" method="GET">
+            <!-- <span class="icon"><i class="fa fa-search">icon</i></span> -->
+            <img src="./media/search-icon.svg" alt="search icon">
+            <input type="text" placeholder="Search" name="search">
+            <input type="checkbox" id="inputCheck"><label for="inputCheck">check</label>
+            <input type="radio" id="inputRadio"><label for="inputRadio">radio</label>
+            <input type="submit" name="applyFilter" id="applyFilter" value="Search">
+        </form>
 
         <div id="gallery">
             <ul>
-                <li><a href="./#">a</a></li>
-                <li><a href="./#">b</a></li>
-                <li><a href="./#">c</a></li>
-                <li><a href="./#">d</a></li>
-                <li><a href="./#">e</a></li>
-                <li><a href="./#">f</a></li>
-                <li><a href="./#">g</a></li>
-                <li><a href="./#">h</a></li>
-                <li><a href="./#">i</a></li>
+                <li id="1"><a href="./#">a</a></li>
+                <li id="2"><a href="./#">b</a></li>
+                <li id="3"><a href="./#">c</a></li>
+                <li id="4"><a href="./#">d</a></li>
+                <li id="5"><a href="./#">e</a></li>
+                <li id="6"><a href="./#">f</a></li>
+                <li id="7"><a href="./#">g</a></li>
+                <li id="8"><a href="./#">h</a></li>
+                <li id="9"><a href="./#">i</a></li>
             </ul>
 
         </div>
     </main>
 
-    <footer>footer</footer>
+    <footer>
+        <ul>
+            <li>Web development assignmet 2020</li>
+            <li>University Of Essex CE154</li>
+            <li>Thor William Voster</li>
+            <li>github.com/WilliamVoster</li>
+        </ul>
+    </footer>
 
 
-    <script src="main.js"></script>
-
+    <script src="./main.js"></script>
 
 </body>
 </html>
