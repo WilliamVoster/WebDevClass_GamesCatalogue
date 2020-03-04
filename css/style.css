@@ -305,6 +305,10 @@ body .userForm input[type="submit"]:hover, body .userForm input[type="submit"]:f
   scrollbar-width: none;
 }
 
+* {
+  scrollbar-width: none;
+}
+
 @media only screen and (max-width: 600px) {
   body {
     background-color: lightblue;

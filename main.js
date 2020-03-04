@@ -16,5 +16,8 @@ document.querySelectorAll("li").forEach(node => {
         }
     }
 });
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 1072e2896492a9cb4b2b6f8dabd25382ad83c585

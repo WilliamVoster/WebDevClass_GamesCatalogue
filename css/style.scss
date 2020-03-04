@@ -5,7 +5,6 @@
     margin: 0;
 }
 
-
 $a: #fff;
 $b: #abc;
 $c: #2E2E31;//#999;
@@ -326,6 +325,11 @@ body{
         }
         
     }
+}
+
+
+*{
+    scrollbar-width: none;
 }
 
 
