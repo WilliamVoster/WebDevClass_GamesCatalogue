@@ -5,6 +5,11 @@
   margin: 0;
 }
 
+.notransition {
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+
 body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -15,10 +20,12 @@ body {
           flex-direction: column;
   height: 100vh;
   color: #2E2E31;
-  background: #7c8d9b;
+  background: #2E2E31;
   font-family: 'Roboto', sans-serif;
   max-width: 100%;
   overflow-x: hidden;
+  overflow-y: hidden;
+  margin-top: 0;
 }
 
 body header {
@@ -81,6 +88,7 @@ body header span ul li a:hover {
 }
 
 body main {
+  background: #7c8d9b;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -279,12 +287,12 @@ body .userForm label {
   cursor: pointer;
   background: #ccc;
   color: #2E2E31;
-  padding-left: .5em;
+  padding: 0 .5em;
 }
 
 body .userForm input[type="text"], body .userForm input[type="password"] {
   border: none;
-  padding-left: .5em;
+  padding: 0 .5em;
   color: #2E2E31;
 }
 

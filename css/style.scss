@@ -4,6 +4,12 @@
     padding: 0;
     margin: 0;
 }
+.notransition {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+}
 
 $a: #fff;
 $b: #abc;
@@ -22,13 +28,15 @@ body{
     height: 100vh;
 
     color: $c;
-    background: $h;
+    background: $c;//$h;
     //background-image: linear-gradient(45deg, $e, $b);
 
     font-family: 'Roboto', sans-serif;
 
     max-width: 100%; //stop items from overflowing
     overflow-x: hidden; //disables the horizontal scroll
+    overflow-y: hidden; //with scrolling from javascript
+    margin-top: 0;
 
 
     header{
@@ -91,6 +99,8 @@ body{
 
 
     main{
+        background: $h;
+
         flex-grow: 1;
         display: grid;
         grid-template-columns: 1fr 220px;//4fr 1fr;
@@ -302,11 +312,11 @@ body{
             cursor:pointer;
             background: $d;
             color: $c;
-            padding-left: .5em;
+            padding: 0 .5em;
         }
         input[type="text"], input[type="password"]{
             border: none;
-            padding-left: .5em;
+            padding: 0 .5em;
             color: $c;
         }
         

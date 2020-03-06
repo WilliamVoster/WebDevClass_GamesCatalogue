@@ -1,4 +1,5 @@
 
+let body = document.getElementById("body")
 let gallery = document.getElementById("gallery");
 
 let list = gallery.getElementsByTagName("li");
@@ -8,7 +9,6 @@ document.querySelectorAll("li").forEach(node => {
 
     if(node.id != ""){
 
-        //console.log(node.id);
 
         node.onclick = () => {
             node.firstChild.click();
@@ -16,8 +16,33 @@ document.querySelectorAll("li").forEach(node => {
         }
     }
 });
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 1072e2896492a9cb4b2b6f8dabd25382ad83c585
+let currentMarginTop = 0;
+window.onbeforeunload = e => body.style.margin = "0";
+body.style.margin = "0";
+window.addEventListener("wheel", e => {
+
+    document.querySelectorAll("li").forEach(node => {
+            node.classList.add("notransition")
+        })
+    if(e.deltaY < 0){
+        currentMarginTop += -80;
+
+    }else if(
+        e.deltaY >= 0 && 
+        currentMarginTop < (body.scrollHeight - window.innerHeight)
+    ){
+        currentMarginTop += 80;
+    }
+
+    if(currentMarginTop < 0){currentMarginTop = 0}
+    
+    body.style.cssText = "margin-top:-"+ currentMarginTop +"px;";
+
+    setTimeout(function() { 
+        document.querySelectorAll("li").forEach(node => {
+        node.classList.remove("notransition")})
+    }, 50);
+   
+})

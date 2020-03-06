@@ -30,7 +30,7 @@ $result = mysqli_query($conn, $sql);
     <!-- <link rel="stylesheet" href="./"> -->
     <title>Home</title>
 </head>
-<body>
+<body id="body">
 
     <?php 
     //include!<>
