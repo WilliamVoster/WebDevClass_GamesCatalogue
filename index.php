@@ -85,7 +85,7 @@ $result = mysqli_query($conn, $sql);
                         echo 
                         "<li id =\"" . $row["id"] . "\">" .
                             "<a href=\"./games/" . "#" . "\">" . $row["title"] . "</a>" .
-                            "<img src=\"" . $row["image"] . "\">" .
+                            "<img src=\"./media/" . $row["image"] . "\">" .
                         "</li>";
                     }
                 }else{
