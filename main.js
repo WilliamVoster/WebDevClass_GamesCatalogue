@@ -1,3 +1,4 @@
+// registration number: 1906423
 
 let body = document.getElementById("body")
 let gallery = document.getElementById("gallery");
@@ -19,7 +20,10 @@ document.querySelectorAll("li").forEach(node => {
 
 
 let currentMarginTop = 0;
-window.onbeforeunload = e => body.style.margin = "0";
+window.onbeforeunload = e => {
+    body.style.margin = "0";
+    return; // stops the pop-up that asks if you want to leave the page
+}
 body.style.margin = "0";
 window.addEventListener("wheel", e => {
 
@@ -31,7 +35,7 @@ window.addEventListener("wheel", e => {
 
     }else if(
         e.deltaY >= 0 && 
-        currentMarginTop < (body.scrollHeight - window.innerHeight)
+        currentMarginTop < (body.scrollHeight) - window.innerHeight
     ){
         currentMarginTop += 80;
     }

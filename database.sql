@@ -1,3 +1,4 @@
+-- registration number: 1906423
 -- JWR assignment database;
 
 DROP TABLE IF EXISTS `bookmarks`;

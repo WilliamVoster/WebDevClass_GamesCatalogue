@@ -1,9 +1,18 @@
+<!-- registration number: 1906423 -->
 <?php
 
-$server   = "localhost"; // essexweb something...something
-$username = "root";
-$password = "";
-$database = "assignment2020";
+session_start();
+
+// $server   = "localhost"; // essexweb something...something
+// $username = "root";
+// $password = "";
+// $database = "assignment2020";
+// $log = "";
+
+$server   = "cseemyweb.essex.ac.uk"; // essexweb something...something
+$username = "tv19295";
+$password = "6LXLZTzFqdKle";
+$database = "ce154_tv19295";
 $log = "";
 
 $conn = new mysqli($server, $username, $password, $database);
@@ -29,43 +38,19 @@ $result = mysqli_query($conn, $sql);
     <link rel="stylesheet" href="./css/style.css">
     <!-- <link rel="stylesheet" href="./"> -->
     <title>Home</title>
+    <style>
+        body{
+            background-color: #2e2e31;
+        }
+    </style>
 </head>
+
 <body id="body">
 
-    <?php 
-    //include!<>
+    <?php include("./include/header.php") ?>
+
+    <!-- <span id="sessionInfo"><?php //echo var_dump($_SESSION);?></span> -->
     
-    ?>
-
-    <header>
-        <nav>
-            <ul>
-                <li><a href="./index.php">Home</a></li>
-                <li><a href="./bookmark.php">Bookmarks</a></li>
-                <li><a href="./review">Write review</a></li>
-                <li><a href="./about.php">About</a></li>
-            </ul>
-        </nav>
-
-        
-        <span>
-            <ul>
-            <?php
-
-            if(!isset($_SESSION)){
-                echo "<li><a href=\"./login.php\">Log in</a></li>";
-                echo "<li><a href=\"./register.php\">Register</a></li>";
-            }else{
-                echo  "Welcome " . $_SESSION["username"] . "!";
-            }
-            
-            ?>
-            </ul>
-        </span>
-   
-    
-    </header>
-
     <main>
         <form id="filter" action="#" method="GET">
             <!-- <span class="icon"><i class="fa fa-search">icon</i></span> -->

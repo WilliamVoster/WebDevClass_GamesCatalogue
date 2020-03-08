@@ -20,7 +20,7 @@ body {
           flex-direction: column;
   height: 100vh;
   color: #2E2E31;
-  background: #2E2E31;
+  background: #7c8d9b;
   font-family: 'Roboto', sans-serif;
   max-width: 100%;
   overflow-x: hidden;
@@ -39,6 +39,7 @@ body header {
   width: 100vw;
   padding: .5em 0;
   background: #2E2E31;
+  color: #abc;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -87,6 +88,10 @@ body header span ul li a:hover {
   color: #2E2E31;
 }
 
+body span#sessionInfo {
+  color: #abc;
+}
+
 body main {
   background: #7c8d9b;
   -webkit-box-flex: 1;
@@ -133,7 +138,7 @@ body main div#gallery ul {
 body main div#gallery ul li {
   width: 350px;
   height: 200px;
-  background-image: linear-gradient(45deg, #abc, #ff6);
+  background: #7c8d9b;
   margin: .5em;
   border-radius: 5px;
   -webkit-box-shadow: -3px 5px 2px #0005;
@@ -264,17 +269,23 @@ body footer {
   color: #666;
 }
 
+body h1.userPage {
+  margin: 100px auto 0 auto;
+  font-size: 4em;
+}
+
 body .userForm {
   width: 350px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 3fr;
       grid-template-columns: 1fr 3fr;
-  -ms-grid-rows: (4)[1fr];
-      grid-template-rows: repeat(1fr, 4);
-  margin: 100px auto;
-  padding: 1em;
-  border-radius: 5px;
+  -ms-grid-rows: 3fr 3fr 3fr 4fr;
+      grid-template-rows: 3fr 3fr 3fr 4fr;
+  margin: 0 auto;
+  border: 2px solid #fff0;
+  -webkit-transition: all 50ms linear;
+  transition: all 50ms linear;
 }
 
 body .userForm input, body .userForm label {
@@ -297,9 +308,16 @@ body .userForm input[type="text"], body .userForm input[type="password"] {
 }
 
 body .userForm input[type="submit"] {
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 1;
+  grid-row: 4 / span 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / span 1;
   cursor: pointer;
   text-decoration: none;
   border: none;
+  font-size: 1em;
   color: #ccc;
   background: #2E2E31;
 }
@@ -307,6 +325,33 @@ body .userForm input[type="submit"] {
 body .userForm input[type="submit"]:hover, body .userForm input[type="submit"]:focus {
   background: #666;
   color: #ccc;
+}
+
+body .userForm span#errorMessageLogin, body .userForm span#errorMessageRegister {
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 1;
+  grid-row: 4 / span 1;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / span 1;
+  display: none;
+  background: red;
+  color: #fff;
+  padding: .1em .2em;
+}
+
+body .userForm span#errorMessageLogin {
+  padding-top: .6em;
+}
+
+body .userForm span#errorMessageLogin.active, body .userForm span#errorMessageRegister.active {
+  display: block;
+}
+
+body form.error, body form.error {
+  border: 2px solid red;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 @media only screen and (max-width: 600px) {
