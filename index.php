@@ -3,17 +3,17 @@
 
 session_start();
 
-// $server   = "localhost"; // essexweb something...something
-// $username = "root";
-// $password = "";
-// $database = "assignment2020";
-// $log = "";
-
-$server   = "cseemyweb.essex.ac.uk"; // essexweb something...something
-$username = "tv19295";
-$password = "6LXLZTzFqdKle";
-$database = "ce154_tv19295";
+$server   = "localhost";
+$username = "root";
+$password = "";
+$database = "assignment2020";
 $log = "";
+
+// $server   = "cseemyweb.essex.ac.uk"; // essexweb something...something
+// $username = "tv19295";
+// $password = "6LXLZTzFqdKle";
+// $database = "ce154_tv19295";
+// $log = "";
 
 $conn = new mysqli($server, $username, $password, $database);
 
@@ -53,7 +53,6 @@ $result = mysqli_query($conn, $sql);
     
     <main>
         <form id="filter" action="#" method="GET">
-            <!-- <span class="icon"><i class="fa fa-search">icon</i></span> -->
             <img src="./media/search-icon.svg" alt="search icon">
             <input type="text" placeholder="Search" name="search">
             <input type="checkbox" id="inputCheck"><label for="inputCheck">check</label>
@@ -65,11 +64,20 @@ $result = mysqli_query($conn, $sql);
             <ul>
                 <?php
                 if(mysqli_num_rows($result) > 0){
+                    $_SESSION["gameImages"] = [];
                     while($row = mysqli_fetch_assoc($result)){
+
+                        $_SESSION["games"][$row["id"]] = [
+                            "title" => $row["title"], 
+                            "image" => $row["image"], 
+                            "genre" => $row["genre"], 
+                            "rating" => $row["rating"]
+                        ];
+
     
                         echo 
                         "<li id =\"" . $row["id"] . "\">" .
-                            "<a href=\"./games/" . "#" . "\">" . $row["title"] . "</a>" .
+                            "<a href=\"./description.php?game=" . $row["id"] . "\">" . $row["title"] . "</a>" .
                             "<img src=\"./media/" . $row["image"] . "\">" .
                         "</li>";
                     }
@@ -92,16 +100,7 @@ $result = mysqli_query($conn, $sql);
     </main>
     
     
-    
-    <footer>
-        <?php echo "--> " . $log;?>
-        <ul>
-            <li>Web development assignmet 2020</li>
-            <li>University Of Essex CE154</li>
-            <li>Thor William Voster</li>
-            <li>github.com/WilliamVoster</li>
-        </ul>
-    </footer>
+    <?php include("./include/footer.html"); ?>
 
     <script src="./main.js"></script>
     

@@ -13,15 +13,15 @@
 $db = array();
 
 // CHANGE THESE TO MATCH YOUR SETUP!
-// $db['host'] = "localhost";
-// $db['user'] = "root";
-// $db['pass'] = "";
-// $db['name'] = "assignment2020";
+$db['host'] = "localhost";
+$db['user'] = "root";
+$db['pass'] = "";
+$db['name'] = "assignment2020";
 
-$db['host'] = "cseemyweb.essex.ac.uk";
-$db['user'] = "tv19295";
-$db['pass'] = "6LXLZTzFqdKle";
-$db['name'] = "ce154_tv19295";
+// $db['host'] = "cseemyweb.essex.ac.uk";
+// $db['user'] = "tv19295";
+// $db['pass'] = "6LXLZTzFqdKle";
+// $db['name'] = "ce154_tv19295";
 
 /**
  * Function to connect to the database

@@ -285,7 +285,93 @@ body{
 
             
         }
+
+
     
+    }
+    main#description{
+        margin: 0 auto;
+        min-width: 708px;
+
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-template-rows: 60px 305px auto;
+
+        background: $h;
+
+        h1{
+            grid-column: 1 / span 2;
+            grid-row: 1 / span 1;
+
+            padding: .2em .1em;
+            max-width: 700px;
+
+            color: $c;
+        }
+
+        img#banner{
+            grid-column: 1 / span 1;
+            grid-row: 2 / span 1;
+
+            // to keep the same aspect ratio
+            width:  350px;
+            height: 200px;
+            transform: scale(1.5) translateY(34px) translateX(60px);
+
+            border: 2px solid $c;
+            background: $i;
+        }
+
+        div#rating{
+            grid-column: 2 / span 1;
+            grid-row: 2 / span 1;
+
+            background: $i;
+            color: $d;
+            font-size: 28px;
+            padding: .1em .3em;
+
+            display: flex;
+            flex-direction: column;
+
+            div{
+                align-items: center;
+                margin: 15px auto;
+                
+                border-radius: 100px;
+                width: 70px;
+                height: 70px;
+
+                display: flex;
+
+                span{
+                    font-size: 28px;
+                    margin: auto;
+                    max-width: 50px;
+                }
+
+            }
+            span{
+                max-width: 160px;
+            }
+            span.subSpan{
+                font-size: 15px;
+            }
+            span:nth-child(2){
+                padding-bottom: 4.5em;
+                padding-top: 1em;
+            }
+            img{
+                width: 80px;
+                height: 80px;
+
+                margin: 10px auto 0 auto;
+                background: $d;
+                padding: .3em;
+                border-radius: 10px;
+            }
+            
+        }
     }
 
     footer{
@@ -371,12 +457,6 @@ body{
     }
 
 }
-
-// *{
-//     scrollbar-width: none;
-// }
-
-
 
 @media only screen and (max-width: 600px) {
     body {

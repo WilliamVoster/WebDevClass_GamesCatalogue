@@ -1,19 +1,17 @@
 // registration number: 1906423
 
 let body = document.getElementById("body")
-let gallery = document.getElementById("gallery");
+// let gallery = document.getElementById("gallery");
 
-let list = gallery.getElementsByTagName("li");
+// let list = gallery.getElementsByTagName("li");
 
 
 document.querySelectorAll("li").forEach(node => {
 
     if(node.id != ""){
 
-
         node.onclick = () => {
             node.firstChild.click();
-            //console.log(node.firstChild);
         }
     }
 });

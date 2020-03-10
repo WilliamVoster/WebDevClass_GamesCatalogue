@@ -3,9 +3,8 @@
     <nav>
         <ul>
             <li><a href="./index.php">Home</a></li>
-            <li><a href="./bookmark.php">Bookmarks</a></li>
+            <li><a href="./wishlist.php">Wishlist</a></li>
             <li><a href="./review">Write review</a></li>
-            <li><a href="./about.php">About</a></li>
         </ul>
     </nav>
 
