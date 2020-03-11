@@ -179,88 +179,88 @@ body main div#gallery ul li:hover {
           transform: scaleX(1.05) scaleY(1.09);
 }
 
-body main form#filter {
+body main div#filter {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
-  grid-column: 2/span 1;
+  grid-column: 2 /span 1;
   height: 300px;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 25.5px 1fr;
-      grid-template-columns: 25.5px 1fr;
-  -ms-grid-rows: (25px)[12];
-      grid-template-rows: repeat(12, 25px);
   color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-body main form#filter input {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 1;
-  grid-column: 1/span 1;
-  margin: auto;
+body main div#filter span#searchbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background: #355;
+  margin-bottom: 1em;
 }
 
-body main form#filter input[type="text"] {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-column: 1/span 2;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 1;
-  grid-row: 1 / span 1;
-  font-family: "Roboto", sans-serif;
-  font-size: 1em;
+body main div#filter span#searchbar img {
+  width: 18px;
+  margin-left: .2em;
+  -webkit-filter: invert(1);
+          filter: invert(1);
+  border-bottom: 1px solid #2E2E31;
+}
+
+body main div#filter span#searchbar input {
+  border: none;
   -webkit-box-shadow: none;
           box-shadow: none;
-  border: none;
-  text-shadow: none;
-  width: 300px;
-  vertical-align: middle;
-  white-space: nowrap;
-  position: relative;
-  padding-left: 30px;
-  border-radius: 2px;
+  background: none;
+  font-size: 18px;
 }
 
-body main form#filter img {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 1;
-  grid-column: 1 / span 1;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 1;
-  grid-row: 1 / span 1;
-  width: 12px;
-  z-index: 1;
-  padding: .32em;
-  background: #ccc;
+body main div#filter span#searchbar input[type="text"] {
+  border-bottom: 1px solid #ccc;
+  padding: .1em .3em;
+  width: 170px;
 }
 
-body main form#filter input[type="submit"] {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2 / span 1;
-  -ms-grid-row: 4;
-  -ms-grid-row-span: 1;
-  grid-row: 4 / span 1;
+body main div#filter span#searchbar input[type="text"], body main div#filter span#searchbar input[type="text"]::-webkit-input-placeholder {
+  color: #ccc;
+  background: #355;
+}
+
+body main div#filter span#searchbar input[type="text"], body main div#filter span#searchbar input[type="text"]:-ms-input-placeholder {
+  color: #ccc;
+  background: #355;
+}
+
+body main div#filter span#searchbar input[type="text"], body main div#filter span#searchbar input[type="text"]::-ms-input-placeholder {
+  color: #ccc;
+  background: #355;
+}
+
+body main div#filter span#searchbar input[type="text"], body main div#filter span#searchbar input[type="text"]::placeholder {
+  color: #ccc;
+  background: #355;
+}
+
+body main div#filter span#searchbar input[type="submit"] {
+  font-size: 15px;
   background: #2E2E31;
   color: #abc;
-  font-size: 1em;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  text-shadow: none;
-  border: 1px solid #2E2E31;
-  border-radius: 2px;
-  width: 80px;
-  margin: 0;
-}
-
-body main form#filter input[type="submit"]:hover {
+  padding: .2em .3em;
   cursor: pointer;
 }
 
-body main form#filter label {
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 1;
-  grid-column: 2/span 1;
+body main div#filter span#searchbar input[type="submit"]:hover {
+  background: #abc;
+  color: #2E2E31;
 }
 
 body main#description {

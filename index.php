@@ -1,31 +1,34 @@
 <!-- registration number: 1906423 -->
 <?php
 
-session_start();
+    session_start();
 
-$server   = "localhost";
-$username = "root";
-$password = "";
-$database = "assignment2020";
-$log = "";
+    $server   = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "assignment2020";
+    $log = "";
 
-// $server   = "cseemyweb.essex.ac.uk"; // essexweb something...something
-// $username = "tv19295";
-// $password = "6LXLZTzFqdKle";
-// $database = "ce154_tv19295";
-// $log = "";
+    // $server   = "cseemyweb.essex.ac.uk"; // essexweb something...something
+    // $username = "tv19295";
+    // $password = "6LXLZTzFqdKle";
+    // $database = "ce154_tv19295";
+    // $log = "";
 
-$conn = new mysqli($server, $username, $password, $database);
+    $conn = new mysqli($server, $username, $password, $database);
 
-if(!$conn){
-    $log = $log . mysqli_connect_error();
-    die();
-}else{
-    $log = $log . "connected";
-}
+    if(!$conn){
+        $log = $log . mysqli_connect_error();
+        die();
+    }else{
+        $log = $log . "connected";
+    }
 
-$sql    = "SELECT id, title, image, genre, rating from games;";
-$result = mysqli_query($conn, $sql);
+    $sql    = "SELECT id, title, image, genre, rating from games;";
+    $result = mysqli_query($conn, $sql);
+
+    include("./database.php");
+    // $conn = connect();
 
 
 ?>
@@ -48,52 +51,68 @@ $result = mysqli_query($conn, $sql);
 <body id="body">
 
     <?php include("./include/header.php") ?>
-
-    <!-- <span id="sessionInfo"><?php //echo var_dump($_SESSION);?></span> -->
     
     <main>
-        <form id="filter" action="#" method="GET">
-            <img src="./media/search-icon.svg" alt="search icon">
-            <input type="text" placeholder="Search" name="search">
-            <input type="checkbox" id="inputCheck"><label for="inputCheck">check</label>
-            <input type="radio" id="inputRadio"><label for="inputRadio">radio</label>
-            <input type="submit" name="applyFilter" id="applyFilter" value="Search">
-        </form>
+        <div id="filter">
+            <form action="./index.php" method="GET">
+                <span id="searchbar">
+                    <img src="./media/search-icon.svg" alt="search icon">
+                    <input type="text" placeholder="Search" name="search">
+                    <input type="submit" value="Search">
+                </span>
+            </form>
 
+            <form action="./index.php" method="GET">
+                <span>
+                    <input type="checkbox" id="inputCheck"><label for="inputCheck">check</label>
+                </span>
+                <span>
+                    <input type="radio" id="inputRadio"><label for="inputRadio">radio</label>
+                </span>
+            </form>
+
+        </div>
+            
         <div id="gallery">
             <ul>
                 <?php
                 if(mysqli_num_rows($result) > 0){
-                    $_SESSION["gameImages"] = [];
                     while($row = mysqli_fetch_assoc($result)){
 
                         $_SESSION["games"][$row["id"]] = [
+                            "id" => $row["id"],
                             "title" => $row["title"], 
                             "image" => $row["image"], 
                             "genre" => $row["genre"], 
                             "rating" => $row["rating"]
                         ];
-
-    
-                        echo 
-                        "<li id =\"" . $row["id"] . "\">" .
-                            "<a href=\"./description.php?game=" . $row["id"] . "\">" . $row["title"] . "</a>" .
-                            "<img src=\"./media/" . $row["image"] . "\">" .
-                        "</li>";
                     }
-                }else{
-                    $log = $log . "<br>0 results";
-                }?>
+                }
+                if(isset($_GET["search"])){
+                    $result = filterSearch($conn, $_GET["search"]); 
 
-                <!-- <li><a href="./#">a</a></li>
-                <li><a href="./#">b</a></li>
-                <li><a href="./#">c</a></li>
-                <li><a href="./#">d</a></li>
-                <li><a href="./#">e</a></li>
-                <li><a href="./#">f</a></li>
-                <li><a href="./#">g</a></li>
-                <li><a href="./#">h</a></li>
-                <li><a href="./#">i</a></li> -->
+                    if(count($result) > 0){
+                        $_SESSION["games"] = [];
+                        foreach($result as $game){
+                            $_SESSION["games"][$game["id"]] = [
+                                "id"    => $game["id"],
+                                "title" => $game["title"], 
+                                "image" => $game["image"], 
+                                "genre" => $game["genre"], 
+                                "rating" => $game["rating"]
+                            ];
+                        }
+                    }
+                }
+                foreach($_SESSION["games"] as $game){
+                    echo 
+                    "<li id =\"" . $game["id"] . "\">" .
+                        "<a href=\"./description.php?game=" . $game["id"] . "\">" . $game["title"] . "</a>" .
+                        "<img src=\"./media/" . $game["image"] . "\">" .
+                    "</li>";
+                }
+                ?>
+
             </ul>
 
         </div>

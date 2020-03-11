@@ -190,99 +190,61 @@ body{
 
         }
 
-        form#filter{
-            grid-column: 2/span 1;
-
-            // border-left: 1px solid $c;
+        div#filter{
+            grid-column: 2 /span 1;
 
             height: 300px;
-
-            display: grid;
-            grid-template-columns: 25.5px 1fr; // 1fr 7fr;
-            // grid-template-rows: 25px 25px auto;
-            grid-template-rows: repeat(12, 25px);
-            
             color: $a;
 
-            input{
-                grid-column: 1/span 1;
-                margin: auto;
-            }
-            // input[type="checkbox"]:hover, input[type="radio"]:hover{
-            //     background: red;
-            // }
-            label{
-                //background: red;
-            }
-            input[type="text"]{
-                grid-column: 1/span 2;
-                grid-row: 1 / span 1;
-
-                // background: transparent;
-                // color: $a;
-                font-family: "Roboto", sans-serif;
-                font-size: 1em;
-
-                box-shadow: none;
-                border: none;
-                text-shadow:none;
-
-                width: 300px;
-                vertical-align: middle;
-                white-space: nowrap;
-                position: relative;
-
-                //color: $d;
-                padding-left: 30px;
-                -webkit-border-radius: 5px;
-                -moz-border-radius: 5px;
-                border-radius: 2px;
-            }
-            input[type="text"]::placeholder{
-                //color: $c;
-            }
-            input[type="text"]:hover{
-                //text-decoration: underline;
-                // background: $d;
-                //text-decoration: underline;
-                //color: $c;
-            }
-            img{
-                grid-column: 1 / span 1;
-                grid-row: 1 / span 1;
-                // width: 20px;
-                width: 12px;
-                z-index: 1;
-                // padding: .15em;
-                padding: .32em;//.35em; //.33em;
-                background:$d;
-                
+            display: flex;
+            flex-direction: column;
+            
+            span{
                 
             }
-            input[type="submit"]{
-                grid-column: 2 / span 1;
-                grid-row: 4 / span 1;
+            span#searchbar{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                
+                background: $i;
 
-                background: $c;
-                color: $b;
-                font-size: 1em;
-                box-shadow: none;
-                text-shadow: none;
-                border: 1px solid $c;
-                border-radius: 2px;
-                width: 80px;
-                margin: 0;
-            }
-            input[type="submit"]:hover{
-                cursor: pointer;
-                //background: $b;
-                //color: $c;
-                //border: 1px solid $c;
-            }     
-            label{
-                grid-column: 2/span 1;
-            }
+                margin-bottom: 1em;
 
+                img{
+                    width: 18px;
+                    margin-left: .2em;
+                    filter: invert(1);
+                    border-bottom: 1px solid $c;
+                }
+                input{
+                    border: none;
+                    box-shadow: none;
+                    background: none;
+                    font-size: 18px;
+                }
+                input[type="text"]{//, input[type="text"]::placeholder{
+                    border-bottom: 1px solid $d;
+                    padding: .1em .3em;
+                    width: 170px;
+                }
+                input[type="text"], input[type="text"]::placeholder{
+                    color: $d;
+                    background: $i;
+                }
+                input[type="submit"]{
+                    font-size: 15px;
+                    background: $c;
+                    color: $b;
+                    padding: .2em .3em;
+                    cursor: pointer;
+                }
+                input[type="submit"]:hover{
+                    background: $b;
+                    color: $c;
+                }
+            }
+          
             
         }
 

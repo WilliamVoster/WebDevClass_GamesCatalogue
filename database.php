@@ -169,3 +169,38 @@ function filterGenerateSQL($search, $filterArr){
     }
 }
 // echo filterGenerateSQL("test", array("test", "test"));
+
+function filterSearch($link, $keyword){
+
+    $query = "SELECT id, title, image, genre, rating from games where title like ?;";
+    $param = "%$keyword%";
+
+    $stmt = $link->prepare($query);
+    if(!$stmt){ die("could not prepare statement: " . $link->errno . ", error: " . $link->error);}
+
+    $stmt->bind_param("s", $param);
+    if ( !$stmt->execute() ) {die("couldn't execute statement");}
+
+    $results = $stmt->get_result();
+    // $temp = $results->fetch_assoc();
+
+    // return $returnArr = [];
+
+    // if(mysqli_num_rows($temp) > 0){
+        
+    $returnArr = [];
+    while ( $row = $results->fetch_assoc() ) {
+        $returnArr[] = $row;
+    }
+    // while ( $row = $results->fetch_array(MYSQLI_NUM) ) {
+    //     // foreach ($row as $r) {
+    //     //     echo $r . "<br>";
+    //     // }
+    //     // echo var_dump($row);
+    //     $returnArr[] = $row;
+    // }
+    // }
+
+    return $returnArr;
+    //return [];
+}
