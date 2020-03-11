@@ -9,7 +9,6 @@ let body = document.getElementById("body")
 document.querySelectorAll("li").forEach(node => {
 
     if(node.id != ""){
-
         node.onclick = () => {
             node.firstChild.click();
         }

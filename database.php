@@ -159,9 +159,13 @@ function login($link, $data){
         // echo var_dump($hash);
         // echo "<br>|<br>";
         // echo var_dump(sha1($password . $salt));
-
     }
-
-    
-
 }
+
+function filterGenerateSQL($search, $filterArr){
+
+    if(is_array($filterArr) && isset($search)){
+        return "wrong input";
+    }
+}
+// echo filterGenerateSQL("test", array("test", "test"));
