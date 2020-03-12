@@ -62,12 +62,24 @@
                 </span>
             </form>
 
-            <form action="./index.php" method="GET">
+            <form action="./index.php" method="GET" id="filterForm">
                 <span>
-                    <input type="checkbox" id="inputCheck"><label for="inputCheck">check</label>
+                    <input type="checkbox" id="over80Rating" name="over80Rating"><label for="over80Rating">Above 80% rating</label>
+                </span>
+                <!-- <span>
+                    <input type="radio" id="inputRadio"><label for="inputRadio">radio</label>
+                </span> -->
+                <span>
+                    <select name="genre">
+                        <option value="">Select genre</option>
+                        <option value="fps">First person shooter</option>
+                        <option value="rpg">Role playing game</option>
+                        <option value="sim">Simulator game</option>
+                        <option value="str">Strategy game</option>
+                    </select>
                 </span>
                 <span>
-                    <input type="radio" id="inputRadio"><label for="inputRadio">radio</label>
+                    <input type="submit" value="Filter">
                 </span>
             </form>
 

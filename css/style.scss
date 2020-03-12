@@ -99,9 +99,6 @@ body{
         }
     }
 
-    span#sessionInfo{
-        color: $b;
-    }
 
     main{
         background: $h;
@@ -199,9 +196,7 @@ body{
             display: flex;
             flex-direction: column;
             
-            span{
-                
-            }
+            
             span#searchbar{
                 display: flex;
                 flex-direction: row;
@@ -209,7 +204,7 @@ body{
                 
                 background: $i;
 
-                margin-bottom: 1em;
+                padding-bottom: 1em;
 
                 img{
                     width: 18px;
@@ -245,6 +240,62 @@ body{
                 }
             }
           
+            form#filterForm{
+                background: $i;
+                display: flex;
+                flex-direction: column;
+                // flex-wrap: wrap;
+
+                span{
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+
+                    input, label{
+                        cursor: pointer;
+                    }
+
+                    input[type="radio"], input[type="checkbox"]{
+                        width:auto;
+                        margin-left: .3em;
+                    }
+                    label{
+                        width:90%;
+                    }
+                    input[type="submit"]{
+                        font-size: 15px;
+                        background: $c;
+                        color: $b;
+                        padding: .2em .7em;
+                        border: none;
+                        font-size: 15px;
+                        
+                    }
+                    input[type="submit"]:hover{
+                        background: $b;
+                        color: $c;
+                    }
+                    select{
+                        // width: 90%;
+                        margin-left:1.3em;
+
+                        // align-items: center;
+                        // justify-content: center;
+    
+                        font-size: 15px;
+                        background: $i;
+                        color: $a;
+                        border: none;
+                        cursor: pointer;
+    
+                        option{
+                            border: none;
+                            cursor: pointer;
+                        }
+                    }
+                }
+                
+            }
             
         }
 

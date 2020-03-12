@@ -88,10 +88,6 @@ body header span ul li a:hover {
   color: #2E2E31;
 }
 
-body span#sessionInfo {
-  color: #abc;
-}
-
 body main {
   background: #7c8d9b;
   -webkit-box-flex: 1;
@@ -205,7 +201,7 @@ body main div#filter span#searchbar {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   background: #355;
-  margin-bottom: 1em;
+  padding-bottom: 1em;
 }
 
 body main div#filter span#searchbar img {
@@ -261,6 +257,68 @@ body main div#filter span#searchbar input[type="submit"] {
 body main div#filter span#searchbar input[type="submit"]:hover {
   background: #abc;
   color: #2E2E31;
+}
+
+body main div#filter form#filterForm {
+  background: #355;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body main div#filter form#filterForm span {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+body main div#filter form#filterForm span input, body main div#filter form#filterForm span label {
+  cursor: pointer;
+}
+
+body main div#filter form#filterForm span input[type="radio"], body main div#filter form#filterForm span input[type="checkbox"] {
+  width: auto;
+  margin-left: .3em;
+}
+
+body main div#filter form#filterForm span label {
+  width: 90%;
+}
+
+body main div#filter form#filterForm span input[type="submit"] {
+  font-size: 15px;
+  background: #2E2E31;
+  color: #abc;
+  padding: .2em .7em;
+  border: none;
+  font-size: 15px;
+}
+
+body main div#filter form#filterForm span input[type="submit"]:hover {
+  background: #abc;
+  color: #2E2E31;
+}
+
+body main div#filter form#filterForm span select {
+  margin-left: 1.3em;
+  font-size: 15px;
+  background: #355;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+body main div#filter form#filterForm span select option {
+  border: none;
+  cursor: pointer;
 }
 
 body main#description {
