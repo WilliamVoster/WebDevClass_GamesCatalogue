@@ -109,10 +109,12 @@ body main div#gallery {
   -ms-grid-column-span: 1;
   grid-column: 1 / span 1;
   padding: .5em;
-  border-right: 1px solid #2E2E31;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 body main div#gallery ul {
@@ -179,7 +181,10 @@ body main div#filter {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-column: 2 /span 1;
-  height: 300px;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  grid-row: 1 /span 2;
+  border-left: 1px solid #2E2E31;
   color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -278,6 +283,7 @@ body main div#filter form#filterForm span {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin: 10px 0 0 0;
 }
 
 body main div#filter form#filterForm span input, body main div#filter form#filterForm span label {
@@ -291,6 +297,10 @@ body main div#filter form#filterForm span input[type="radio"], body main div#fil
 
 body main div#filter form#filterForm span label {
   width: 90%;
+}
+
+body main div#filter form#filterForm span label:hover {
+  text-decoration: underline;
 }
 
 body main div#filter form#filterForm span input[type="submit"] {
@@ -308,10 +318,10 @@ body main div#filter form#filterForm span input[type="submit"]:hover {
 }
 
 body main div#filter form#filterForm span select {
-  margin-left: 1.3em;
-  font-size: 15px;
-  background: #355;
-  color: #fff;
+  font-family: sans-serif;
+  font-size: 17px;
+  background: #fff;
+  color: #355;
   border: none;
   cursor: pointer;
 }
@@ -326,10 +336,10 @@ body main#description {
   min-width: 708px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 3fr 1fr;
-      grid-template-columns: 3fr 1fr;
-  -ms-grid-rows: 60px 305px auto;
-      grid-template-rows: 60px 305px auto;
+  -ms-grid-columns: 531px auto;
+      grid-template-columns: 531px auto;
+  -ms-grid-rows: 60px 305px auto auto;
+      grid-template-rows: 60px 305px auto auto;
   background: #7c8d9b;
 }
 
@@ -412,13 +422,62 @@ body main#description div#rating span:nth-child(2) {
   padding-top: 1em;
 }
 
-body main#description div#rating img {
-  width: 80px;
+body main#description div#rating a {
   height: 80px;
   margin: 10px auto 0 auto;
   background: #ccc;
   padding: .3em;
   border-radius: 10px;
+}
+
+body main#description div#rating a img {
+  width: 80px;
+  height: 80px;
+}
+
+body main#description div#gameDescription, body main#description div#addToBookmark {
+  padding: 1em;
+  margin-top: 1em;
+  background: #355;
+  color: #ccc;
+}
+
+body main#description div#gameDescription {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / span 1;
+  margin-left: 2px;
+}
+
+body main#description div#addToBookmark {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / span 1;
+}
+
+body main#description div#addToBookmark form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body main#description div#addToBookmark form input {
+  cursor: pointer;
+  background: #7c8d9b;
+  color: #355;
+  font-size: 18px;
+  border: 1px solid #7c8d9b;
+  padding: .5em;
+  border-radius: 5px;
+}
+
+body main#description div#addToBookmark form input:hover {
+  background: #355;
+  color: #7c8d9b;
 }
 
 body footer {

@@ -138,6 +138,7 @@ function login($link, $data){
 
     $previousUser = checkForUser($link, $data);
     if (count($previousUser) == 0){ return false; }
+    // echo var_dump($previousUser);
 
     $username = $previousUser[0]["uname"];
     $hash = $previousUser[0]["pass"];
@@ -147,32 +148,68 @@ function login($link, $data){
     if ($hash == sha1($password . $salt)){
         //echo "right password!";
         $_SESSION["username"] = $username;
+        $_SESSION["userID"] = $previousUser[0]["id"];
+
         return true;
     }else{
         //echo "wrong password";
         return false;
-        // echo "<br>|<br>";
-        // echo var_dump($password);
-        // echo "<br>|<br>";
-        // echo var_dump($salt);
-        // echo "<br>|<br>";
-        // echo var_dump($hash);
-        // echo "<br>|<br>";
-        // echo var_dump(sha1($password . $salt));
     }
 }
 
-function filterGenerateSQL($search, $filterArr){
-
-    if(is_array($filterArr) && isset($search)){
-        return "wrong input";
+function filterGenreRating($link, $genre, $rating){
+    $genreBool = false;
+    $ratingBool = false;
+    if(isset($genre)){
+        if($genre != ""){
+            $genreBool = true;
+        }
     }
+    if(isset($rating)){
+        if($rating == "on"){
+            $ratingBool = true;
+        }
+    }
+
+    if(!$genreBool and !$ratingBool){return [];}
+
+    $query = "SELECT id, title, image, genre, rating, description from games where ";
+
+    if($genreBool){ $query .= "genre = ?"; }
+
+    if($genreBool and $ratingBool){ $query .= " and "; }
+
+    if($ratingBool){ $query .= "rating > 80"; }
+    
+
+    $returnArr = [];
+    $param = "$genre";
+
+    $stmt = $link->prepare($query);
+    if(!$stmt){ die("could not prepare statement: " . $link->errno . ", error: " . $link->error);}
+
+    if($genreBool){ $stmt->bind_param("s", $param); }
+
+    if ( !$stmt->execute() ) {die("couldn't execute statement");}
+
+    $results = $stmt->get_result();
+        
+    while ( $row = $results->fetch_assoc() ) {
+        $returnArr[] = $row;
+    }
+
+    return $returnArr;
+
 }
-// echo filterGenerateSQL("test", array("test", "test"));
 
 function filterSearch($link, $keyword){
+    $returnArr = [];
+    if($keyword == ""){
+        echo "No search keyword<br>";
+        return $returnArr;
+    }
 
-    $query = "SELECT id, title, image, genre, rating from games where title like ?;";
+    $query = "SELECT id, title, image, genre, rating, description from games where title like ?;";
     $param = "%$keyword%";
 
     $stmt = $link->prepare($query);
@@ -188,7 +225,6 @@ function filterSearch($link, $keyword){
 
     // if(mysqli_num_rows($temp) > 0){
         
-    $returnArr = [];
     while ( $row = $results->fetch_assoc() ) {
         $returnArr[] = $row;
     }

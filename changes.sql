@@ -1,6 +1,8 @@
 -- registration number: 1906423
 USE assigment2020;
 
+--not being used **
+
 update games
 set image="https://steamcdn-a.akamaihd.net/steam/apps/8930/header.jpg?t=1579731804"
 where id = 1;

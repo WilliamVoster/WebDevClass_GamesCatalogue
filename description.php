@@ -60,13 +60,48 @@
                         foreach($genres as $key => $value){
                             if($key == $gameInfo["genre"]){
                                 echo "<span class=\"subSpan\">" . $genres[$gameInfo["genre"]] . " game</span>";
-                                echo "<img src=\"./media/genre/" . $gameInfo["genre"] . ".png\">";
+                                echo "<a href=\"index.php?genre=" . $gameInfo["genre"] . "\"><img src=\"./media/genre/" . $gameInfo["genre"] . ".png\"></a>";
                             }
                         }
                     }else{
                         echo "<span class=\"subSpan\">No genre for this game</span>";
                     }
+                    echo "</div>";
 
+
+                    echo 
+                        "<div id=\"gameDescription\">" .  
+                        "<h3>Description</h3><br>" .
+                        $gameInfo["description"] . 
+                        "-- Steam</div>";
+
+                    //handle add and remove from bookmark
+                    if(isset($_POST["bookmark"])){
+                        if($_POST["bookmark"] == "add"){
+                            $_SESSION["bookmark"][$id] = true;
+                        }elseif($_POST["bookmark"] == "remove"){
+                            $_SESSION["bookmark"][$id] = false;
+                        }
+                    }
+
+
+                    echo "<div id=\"addToBookmark\">" .
+                        "<form acrion=\"./description\" method=\"POST\">"; //GET removes the already present gameID = x;
+
+                        if(isset($_SESSION["username"])){
+                            if(isset($_SESSION["bookmark"]) and in_array($id, $_SESSION["bookmark"])){
+                                // game is in bookmark
+                                echo "<input type=\"hidden\" name=\"bookmark\" value=\"remove\">" . 
+                                    "<input type=\"submit\" value=\"Remove bookmark\">";
+                                
+                            }else{
+                                echo "<input type=\"hidden\" name=\"bookmark\" value=\"add\">" . 
+                                    "<input type=\"submit\" value=\"Add bookmark\">";
+                            }
+                        }else{
+                            echo "Log in for bookmark <br> functionality";
+                        }
+                    echo "</form></div>";
 
                 }
             }

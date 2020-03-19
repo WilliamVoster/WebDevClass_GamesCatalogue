@@ -24,8 +24,11 @@
         $log = $log . "connected";
     }
 
-    $sql    = "SELECT id, title, image, genre, rating from games;";
+    $sql    = "SELECT id, title, image, genre, rating, description FROM games;";
     $result = mysqli_query($conn, $sql);
+
+    $bookmarkSql    = "SELECT user_id, game_id FROM bookmarks;";
+    $bookmarkResult = mysqli_query($conn, $bookmarkSql);
 
     include("./database.php");
     // $conn = connect();
@@ -64,14 +67,8 @@
 
             <form action="./index.php" method="GET" id="filterForm">
                 <span>
-                    <input type="checkbox" id="over80Rating" name="over80Rating"><label for="over80Rating">Above 80% rating</label>
-                </span>
-                <!-- <span>
-                    <input type="radio" id="inputRadio"><label for="inputRadio">radio</label>
-                </span> -->
-                <span>
                     <select name="genre">
-                        <option value="">Select genre</option>
+                    <option value="">Select genre</option>
                         <option value="fps">First person shooter</option>
                         <option value="rpg">Role playing game</option>
                         <option value="sim">Simulator game</option>
@@ -79,6 +76,14 @@
                     </select>
                 </span>
                 <span>
+                    <input type="checkbox" id="over80Rating" name="over80Rating"><label for="over80Rating">Above 80% rating</label>
+                </span>
+                <!-- <span>
+                    <input type="radio" id="inputRadio"><label for="inputRadio">radio</label>
+                </span> -->
+                
+                <span>
+                    <!-- <input type="hidden" name="filter" value="yes"> -->
                     <input type="submit" value="Filter">
                 </span>
             </form>
@@ -90,30 +95,63 @@
                 <?php
                 if(mysqli_num_rows($result) > 0){
                     while($row = mysqli_fetch_assoc($result)){
-
                         $_SESSION["games"][$row["id"]] = [
                             "id" => $row["id"],
                             "title" => $row["title"], 
                             "image" => $row["image"], 
                             "genre" => $row["genre"], 
-                            "rating" => $row["rating"]
+                            "rating" => $row["rating"],
+                            "description" => $row["description"]
                         ];
+                        
                     }
+                }
+                if(mysqli_num_rows($bookmarkResult) > 0 and isset($_SESSION["username"])){
+                    $_SESSION["bookmark"] = [];
+                    while($row = mysqli_fetch_assoc($bookmarkResult)){
+                        // echo var_dump($row);
+                        if($row["user_id"] == $_SESSION["userID"]){
+                            $_SESSION["bookmark"][] = $row["game_id"];
+                        }
+                        // else{
+                        //     $_SESSION["bookmark"][$row["user_id"]] = false;
+                        // }
+                    }
+                    echo var_dump($_SESSION["bookmark"]);
                 }
                 if(isset($_GET["search"])){
                     $result = filterSearch($conn, $_GET["search"]); 
+                    
+                }elseif((isset($_GET["genre"]) and $_GET["genre"] != "") or isset($_GET["over80Rating"])){
+                    // if($_GET["genre"] != "" or $_GET["over80Rating"] == "on"){
+                        $rating = "off";
+                        if(isset($_GET["over80Rating"])){  $rating = $_GET["over80Rating"]; }
+
+                        $result = filterGenreRating($conn, $_GET["genre"], $rating);
+                    // }
+                }
+                if(
+                    isset($_GET["search"]) or 
+                    (isset($_GET["genre"]) and $_GET["genre"] != "") or 
+                    (isset($_GET["over80Rating"]) and $_GET["over80Rating"] == "on")){
+                    // echo var_dump($result);
 
                     if(count($result) > 0){
                         $_SESSION["games"] = [];
                         foreach($result as $game){
+                            // echo var_dump($game);
                             $_SESSION["games"][$game["id"]] = [
                                 "id"    => $game["id"],
                                 "title" => $game["title"], 
                                 "image" => $game["image"], 
                                 "genre" => $game["genre"], 
-                                "rating" => $game["rating"]
+                                "rating" => $game["rating"],
+                                "description" => $game["description"]
                             ];
                         }
+                    }else{
+                        $_SESSION["games"] = [];
+                        echo "No results";
                     }
                 }
                 foreach($_SESSION["games"] as $game){
