@@ -5,7 +5,7 @@
 
     session_start();
 
-
+    getBookmarks($conn);
 
 ?>
 <!DOCTYPE html>
@@ -79,9 +79,13 @@
                     if(isset($_POST["bookmark"])){
                         if($_POST["bookmark"] == "add"){
                             $_SESSION["bookmark"][$id] = true;
+                            addBookmark($conn, $_SESSION["userID"], $id);
+
                         }elseif($_POST["bookmark"] == "remove"){
                             $_SESSION["bookmark"][$id] = false;
+                            removeBookmark($conn, $_SESSION["userID"], $id);
                         }
+                        //echo var_dump($_SESSION["bookmark"]);
                     }
 
 
@@ -89,7 +93,7 @@
                         "<form acrion=\"./description\" method=\"POST\">"; //GET removes the already present gameID = x;
 
                         if(isset($_SESSION["username"])){
-                            if(isset($_SESSION["bookmark"]) and in_array($id, $_SESSION["bookmark"])){
+                            if(isset($_SESSION["bookmark"]) and $_SESSION["bookmark"][$id]){
                                 // game is in bookmark
                                 echo "<input type=\"hidden\" name=\"bookmark\" value=\"remove\">" . 
                                     "<input type=\"submit\" value=\"Remove bookmark\">";
@@ -102,6 +106,8 @@
                             echo "Log in for bookmark <br> functionality";
                         }
                     echo "</form></div>";
+
+                    
 
                 }
             }

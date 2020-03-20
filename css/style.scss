@@ -310,7 +310,7 @@ body{
 
     
     }
-    main#description{
+    main#description, main#bookmarks{
         margin: 0 auto;
         min-width: 708px;
 
@@ -414,12 +414,14 @@ body{
             form{
                 display: flex;
                 flex-direction: column;
+                align-items: center;
 
                 input{
+                    width: 130px;
                     cursor: pointer;
                     background: $h;
                     color: $i;
-                    font-size: 18px;
+                    font-size: 14px;
                     border: 1px solid $h;
                     padding: .5em;
                     border-radius: 5px;
@@ -430,6 +432,42 @@ body{
                 }
             }
 
+        }
+    }
+    main#bookmarks{
+        display: flex;
+        flex-direction: column;
+
+        div{
+            // display: flex;
+            // flex-direction: column;
+            background: $i;
+            color: $d;
+            padding: .5em;
+            margin-bottom: .5em;
+
+            span{
+                display: flex;
+                flex-direction: row;
+
+                a, form input{
+                    background: $i;
+                    color: $d;
+                    border: 1px solid $i;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    text-decoration: underline;
+                    font-family:  'Roboto', sans-serif;
+                    font-size: 16px;
+                    padding: .1em;
+                    margin-right: .3em;
+                }
+                a:hover, form input:hover{
+                    // background: red;
+                    color: $h;
+                }
+
+            }
         }
     }
 

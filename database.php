@@ -240,3 +240,54 @@ function filterSearch($link, $keyword){
     return $returnArr;
     //return [];
 }
+function addBookmark($link, $userID, $gameID){
+
+    $query = "INSERT into bookmarks (user_id, game_id) VALUES (?, ?);";
+
+    $stmt = $link->prepare($query);
+
+    if ( !$stmt ) { die("could not prepare statement: " . $link->errno . ", error: " . $link->error); } 
+
+    $result = $stmt->bind_param("ii", $userID, $gameID);
+
+    if ( !$result ) { die("could not bind params: " . $stmt->error); }
+ 
+    if ( !$stmt->execute() ) { die("couldn't execute statement"); }
+
+}
+function removeBookmark($link, $userID, $gameID){
+
+    $query = "DELETE FROM bookmarks where user_id = ? and game_id = ?";
+
+    $stmt = $link->prepare($query);
+
+    if ( !$stmt ) { die("could not prepare statement: " . $link->errno . ", error: " . $link->error); } 
+
+    $result = $stmt->bind_param("ii", $userID, $gameID);
+
+    if ( !$result ) { die("could not bind params: " . $stmt->error); }
+ 
+    if ( !$stmt->execute() ) { die("couldn't execute statement"); }
+
+}
+function getBookmarks($conn){
+    $sql    = "SELECT id, title FROM games;";
+    $result = mysqli_query($conn, $sql);
+
+    $bookmarkSql    = "SELECT user_id, game_id FROM bookmarks;";
+    $bookmarkResult = mysqli_query($conn, $bookmarkSql);
+
+    $_SESSION["bookmark"] = [];
+    foreach ($result as $id) {
+        // $_SESSION["bookmark"][] = $id;
+        $_SESSION["bookmark"][$id["id"]] = false;
+        
+    }
+    foreach ($bookmarkResult as $pair) {
+
+        if($pair["user_id"] == $_SESSION["userID"]){
+            $_SESSION["bookmark"][$pair["game_id"]] = true;
+
+        }
+    }
+}

@@ -117,7 +117,7 @@
                         //     $_SESSION["bookmark"][$row["user_id"]] = false;
                         // }
                     }
-                    echo var_dump($_SESSION["bookmark"]);
+                    // echo var_dump($_SESSION["bookmark"]);
                 }
                 if(isset($_GET["search"])){
                     $result = filterSearch($conn, $_GET["search"]); 
@@ -161,6 +161,7 @@
                         "<img src=\"./media/" . $game["image"] . "\">" .
                     "</li>";
                 }
+                echo var_dump($_SESSION["bookmark"]);
                 ?>
 
             </ul>
