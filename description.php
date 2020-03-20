@@ -107,7 +107,10 @@
                         }
                     echo "</form></div>";
 
-                    
+                    echo 
+                        "<div id=\"reviews\">" . 
+                            
+                        "</div>";
 
                 }
             }

@@ -316,7 +316,8 @@ body{
 
         display: grid;
         // grid-template-columns: 3fr 1fr;
-        grid-template-columns: 531px auto;
+        // grid-template-columns: 531px auto;
+        grid-template-columns: 531px 170px; //maybe first col grows?
         grid-template-rows: 60px 305px auto auto;
 
         background: $h;
@@ -432,6 +433,11 @@ body{
                 }
             }
 
+        }
+        div#reviews{
+            grid-column: 1 / span 2;
+
+            
         }
     }
     main#bookmarks{

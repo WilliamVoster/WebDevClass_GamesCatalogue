@@ -336,8 +336,8 @@ body main#description, body main#bookmarks {
   min-width: 708px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 531px auto;
-      grid-template-columns: 531px auto;
+  -ms-grid-columns: 531px 170px;
+      grid-template-columns: 531px 170px;
   -ms-grid-rows: 60px 305px auto auto;
       grid-template-rows: 60px 305px auto auto;
   background: #7c8d9b;
@@ -482,6 +482,12 @@ body main#description div#addToBookmark form input, body main#bookmarks div#addT
 body main#description div#addToBookmark form input:hover, body main#bookmarks div#addToBookmark form input:hover {
   background: #355;
   color: #7c8d9b;
+}
+
+body main#description div#reviews, body main#bookmarks div#reviews {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / span 2;
 }
 
 body main#bookmarks {

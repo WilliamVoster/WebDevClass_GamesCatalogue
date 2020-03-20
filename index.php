@@ -161,7 +161,6 @@
                         "<img src=\"./media/" . $game["image"] . "\">" .
                     "</li>";
                 }
-                echo var_dump($_SESSION["bookmark"]);
                 ?>
 
             </ul>
