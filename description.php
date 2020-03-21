@@ -16,6 +16,11 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <title><?php echo $_GET["game"];?></title>
+    <style>
+        body{
+            background-color: #2e2e31;
+        }
+    </style>
 </head>
 <body id="body">
 
@@ -107,10 +112,83 @@
                         }
                     echo "</form></div>";
 
+
+                    if(isset($_POST["newReview"])){
+                        //echo var_dump($_POST);
+                        // echo htmlspecialchars($_POST["reviewBody"]);
+                        createReview(
+                            $conn, 
+                            $_POST["reviewTitle"], 
+                            htmlspecialchars($_POST["reviewBody"]), 
+                            $_POST["reviewRating"], 
+                            $id);
+                        // echo "test";
+                    }
+                    $reviews = [];
+                    foreach (getReviews($conn) as $row) {
+                        if($row["game_id"] == $_GET["game"]){
+                            $reviews[] = $row;
+                        }
+                    }
+                    echo "<div id=\"reviews\">";
+                    if(count($reviews) > 0){ echo "<h3>Reviews</h3>"; 
+                    }else{ echo "<h3>No reviwes for this game</h3>"; }
+
+                    echo "<a href=\"#\" id=\"showNewReview\"";
+                    if(!isset($_SESSION["username"])){echo "class=\"hidden\"";}
+                    echo ">Write review</a>";
+
                     echo 
-                        "<div id=\"reviews\">" . 
+                        "<div id=\"newReview\" class=\"hidden\">" . 
+                        "<h3>New review for " . $gameInfo["title"] . "</h3>" .
+                        "<form action=\"#\" method=\"POST\" id=\"newReviewForm\">" .
+                        "<label for=\"reviewTitle\">Title</label>" .
+                        "<input type=\"text\" id=\"reviewTitle\" name=\"reviewTitle\">" .
+                        "<label for=\"reviewRating\">Rating in %</label>" .
+                        "<input type=\"number\" id=\"reviewRating\" name=\"reviewRating\" min=\"0\" max=\"100\">" .
+                        "<textarea rows=\"4\" cols=\"50\" name=\"reviewBody\"
+                        style=\"resize: none;\" placeholder=\"Write review here \"></textarea>" .
+                        "<input type=\"submit\" name=\"newReview\" value=\"Create review\">" .
+                        "</form></div>";
+                    
+                    echo 
+                        "<script type=\"text/javascript\">
+                            showNewReview = document.getElementById(\"showNewReview\");
+                            newReview = document.getElementById(\"newReview\");
+                            flipBool = false;
+                            showNewReview.onclick = () => {
+                                newReview.classList.toggle(\"hidden\");
+                                if(flipBool){ showNewReview.innerHTML = \"Write review\"; 
+                                }else{ showNewReview.innerHTML = \"Close\"; }
+                                flipBool = !flipBool;
+                            }
+                        </script>";
+
+                    if(count($reviews) > 0){
+                    foreach ($reviews as $review) {
+                        echo 
+                            "<div>" .
+                            "<h3>" . $review["title"] . "</h3>" .
+                            "<p>" . $review["review"] . "</p>";
+                            if(isset($_SESSION["userID"])){
+                                if($review["user_id"] == $_SESSION["userID"]){
+                                echo 
+                                    "<form action=\"./description.php\" method=\"POST\">
+                                    <input type=\"submit\" name=\"editReview\" value=\"Edit review\">
+                                    </form>";
+                                }
+                            }
                             
-                        "</div>";
+                        echo "</div>";
+                    }
+                    }else{
+                        
+                    }
+
+                    
+
+                    echo "</div>";
+
 
                 }
             }

@@ -311,14 +311,15 @@ body{
     
     }
     main#description, main#bookmarks{
-        margin: 0 auto;
+        padding: 0 auto; // margin: 0 auto;
+        justify-content: center;
         min-width: 708px;
 
         display: grid;
         // grid-template-columns: 3fr 1fr;
         // grid-template-columns: 531px auto;
         grid-template-columns: 531px 170px; //maybe first col grows?
-        grid-template-rows: 60px 305px auto auto;
+        grid-template-rows: 60px 305px auto 1fr;
 
         background: $h;
 
@@ -390,7 +391,7 @@ body{
                 margin: 10px auto 0 auto;
                 background: $d;
                 padding: .3em;
-                border-radius: 10px;
+                border-radius: 5px;
                 img{
                     width: 80px;
                     height: 80px;
@@ -415,7 +416,7 @@ body{
             form{
                 display: flex;
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-end;
 
                 input{
                     width: 130px;
@@ -425,7 +426,7 @@ body{
                     font-size: 14px;
                     border: 1px solid $h;
                     padding: .5em;
-                    border-radius: 5px;
+                    // border-radius: 5px;
                 }
                 input:hover{
                     background: $i; 
@@ -437,12 +438,126 @@ body{
         div#reviews{
             grid-column: 1 / span 2;
 
-            
+            display: grid;
+            grid-template-columns: auto 170px;
+            grid-template-rows: 40px auto;
+
+            padding: 1em;
+            margin: 1em 0 1em 2px;
+            color: $d;
+            background: $i;
+
+            h3{
+                // margin-bottom: .5em;
+            }
+            a{
+                width: 100px;
+                height: 20px;
+                padding: .2em;
+                text-align: center;
+                margin: 0 0 0 auto;
+                background: $h;
+                color: $i;
+                border: 1px solid $h;
+                cursor: pointer;
+            }
+            a:hover{
+                background: $i;
+                color: $h;
+            }
+            div{
+                grid-column: 1 / span 2;
+                // background: $h;
+                // color: $c;
+                padding: 1em;
+                
+                // border-top: 7px solid $i;
+                border: 1px solid $d;
+                margin-top: .5em;
+                h3{
+                    font-family: 'Roboto', sans-serif;
+                }
+
+            }
+            div#newReview{
+                // display: none;
+                border-color: $i;
+                background: $i;
+                color: $d;
+                padding: 0;
+
+                h3{
+                    padding-bottom: .5em;
+                }
+
+                form{
+                    display: grid;
+                    grid-template-columns: 120px 1fr;
+                    grid-template-rows: 1fr 1fr 5fr 1fr;
+
+
+                    label, input, textarea{
+                        font-family: 'Roboto', sans-serif;
+                    }
+                    label{
+                        grid-column: 1 / span 1;
+                        background: $d;
+                        color: $c;
+                        padding: .6em;
+                        cursor: pointer;
+                        
+                    }
+                    input{
+                        grid-column: 2 / span 1;
+                        // width: 120px;
+
+                        background: $a;
+                        border: none;
+
+                        padding: 0 .5em;
+                        font-size: 16px;
+                    }
+                    input[type="submit"]{
+                        grid-column: 2 / span 1;
+                        width: 150px;
+                        padding: .5em 1em;
+                        margin: 0 0 0 auto;
+                        background: $c;
+                        color: $d;
+                        cursor: pointer;
+                    }
+                    input[type="submit"]:hover{
+                        background: $f;
+                    }
+                    textarea{
+                        grid-column: 1 / span 2;
+                        padding: .5em;
+                        border: none;
+                    }
+
+                    /* Chrome, Safari, Edge, Opera */
+                    input::-webkit-outer-spin-button,
+                    input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                    }
+
+                    /* Firefox */
+                    input[type=number] {
+                    -moz-appearance: textfield;
+                    }
+
+                }
+
+            }
         }
+        
     }
     main#bookmarks{
         display: flex;
         flex-direction: column;
+        justify-content: flex-start;
+        margin: 0 auto;
 
         div{
             // display: flex;
@@ -481,6 +596,7 @@ body{
         display: block;
         background: $c;
         color: $f;
+        // padding-bottom: 200px;
     }
 
     h1.userPage{
@@ -557,6 +673,9 @@ body{
     form.error, form.error{
         border: 2px solid red;
         transform: scale(1.2);
+    }
+    .hidden{
+        display:none;
     }
 
 }

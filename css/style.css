@@ -332,14 +332,17 @@ body main div#filter form#filterForm span select option {
 }
 
 body main#description, body main#bookmarks {
-  margin: 0 auto;
+  padding: 0 auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   min-width: 708px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 531px 170px;
       grid-template-columns: 531px 170px;
-  -ms-grid-rows: 60px 305px auto auto;
-      grid-template-rows: 60px 305px auto auto;
+  -ms-grid-rows: 60px 305px auto 1fr;
+      grid-template-rows: 60px 305px auto 1fr;
   background: #7c8d9b;
 }
 
@@ -427,7 +430,7 @@ body main#description div#rating a, body main#bookmarks div#rating a {
   margin: 10px auto 0 auto;
   background: #ccc;
   padding: .3em;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 body main#description div#rating a img, body main#bookmarks div#rating a img {
@@ -463,9 +466,9 @@ body main#description div#addToBookmark form, body main#bookmarks div#addToBookm
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 body main#description div#addToBookmark form input, body main#bookmarks div#addToBookmark form input {
@@ -476,7 +479,6 @@ body main#description div#addToBookmark form input, body main#bookmarks div#addT
   font-size: 14px;
   border: 1px solid #7c8d9b;
   padding: .5em;
-  border-radius: 5px;
 }
 
 body main#description div#addToBookmark form input:hover, body main#bookmarks div#addToBookmark form input:hover {
@@ -488,6 +490,127 @@ body main#description div#reviews, body main#bookmarks div#reviews {
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-column: 1 / span 2;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 170px;
+      grid-template-columns: auto 170px;
+  -ms-grid-rows: 40px auto;
+      grid-template-rows: 40px auto;
+  padding: 1em;
+  margin: 1em 0 1em 2px;
+  color: #ccc;
+  background: #355;
+}
+
+body main#description div#reviews a, body main#bookmarks div#reviews a {
+  width: 100px;
+  height: 20px;
+  padding: .2em;
+  text-align: center;
+  margin: 0 0 0 auto;
+  background: #7c8d9b;
+  color: #355;
+  border: 1px solid #7c8d9b;
+  cursor: pointer;
+}
+
+body main#description div#reviews a:hover, body main#bookmarks div#reviews a:hover {
+  background: #355;
+  color: #7c8d9b;
+}
+
+body main#description div#reviews div, body main#bookmarks div#reviews div {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / span 2;
+  padding: 1em;
+  border: 1px solid #ccc;
+  margin-top: .5em;
+}
+
+body main#description div#reviews div h3, body main#bookmarks div#reviews div h3 {
+  font-family: 'Roboto', sans-serif;
+}
+
+body main#description div#reviews div#newReview, body main#bookmarks div#reviews div#newReview {
+  border-color: #355;
+  background: #355;
+  color: #ccc;
+  padding: 0;
+}
+
+body main#description div#reviews div#newReview h3, body main#bookmarks div#reviews div#newReview h3 {
+  padding-bottom: .5em;
+}
+
+body main#description div#reviews div#newReview form, body main#bookmarks div#reviews div#newReview form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 120px 1fr;
+      grid-template-columns: 120px 1fr;
+  -ms-grid-rows: 1fr 1fr 5fr 1fr;
+      grid-template-rows: 1fr 1fr 5fr 1fr;
+  /* Chrome, Safari, Edge, Opera */
+  /* Firefox */
+}
+
+body main#description div#reviews div#newReview form label, body main#description div#reviews div#newReview form input, body main#description div#reviews div#newReview form textarea, body main#bookmarks div#reviews div#newReview form label, body main#bookmarks div#reviews div#newReview form input, body main#bookmarks div#reviews div#newReview form textarea {
+  font-family: 'Roboto', sans-serif;
+}
+
+body main#description div#reviews div#newReview form label, body main#bookmarks div#reviews div#newReview form label {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / span 1;
+  background: #ccc;
+  color: #2E2E31;
+  padding: .6em;
+  cursor: pointer;
+}
+
+body main#description div#reviews div#newReview form input, body main#bookmarks div#reviews div#newReview form input {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / span 1;
+  background: #fff;
+  border: none;
+  padding: 0 .5em;
+  font-size: 16px;
+}
+
+body main#description div#reviews div#newReview form input[type="submit"], body main#bookmarks div#reviews div#newReview form input[type="submit"] {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / span 1;
+  width: 150px;
+  padding: .5em 1em;
+  margin: 0 0 0 auto;
+  background: #2E2E31;
+  color: #ccc;
+  cursor: pointer;
+}
+
+body main#description div#reviews div#newReview form input[type="submit"]:hover, body main#bookmarks div#reviews div#newReview form input[type="submit"]:hover {
+  background: #666;
+}
+
+body main#description div#reviews div#newReview form textarea, body main#bookmarks div#reviews div#newReview form textarea {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / span 2;
+  padding: .5em;
+  border: none;
+}
+
+body main#description div#reviews div#newReview form input::-webkit-outer-spin-button,
+body main#description div#reviews div#newReview form input::-webkit-inner-spin-button, body main#bookmarks div#reviews div#newReview form input::-webkit-outer-spin-button,
+body main#bookmarks div#reviews div#newReview form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+body main#description div#reviews div#newReview form input[type=number], body main#bookmarks div#reviews div#newReview form input[type=number] {
+  -moz-appearance: textfield;
 }
 
 body main#bookmarks {
@@ -498,6 +621,10 @@ body main#bookmarks {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin: 0 auto;
 }
 
 body main#bookmarks div {
@@ -623,6 +750,10 @@ body form.error, body form.error {
   border: 2px solid red;
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
+}
+
+body .hidden {
+  display: none;
 }
 
 @media only screen and (max-width: 600px) {

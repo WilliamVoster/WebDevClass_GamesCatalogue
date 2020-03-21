@@ -271,6 +271,8 @@ function removeBookmark($link, $userID, $gameID){
 
 }
 function getBookmarks($conn){
+    if(!isset($_SESSION["userID"])){return;}
+
     $sql    = "SELECT id, title FROM games;";
     $result = mysqli_query($conn, $sql);
 
@@ -290,4 +292,39 @@ function getBookmarks($conn){
 
         }
     }
+}
+function getReviews($conn){
+
+    $query = "SELECT id, user_id, game_id, rating, title, review from reviews;";
+    $result = mysqli_query($conn, $query);
+
+    $returnArr = [];
+
+    if(mysqli_num_rows($result) > 0){
+        while($row = mysqli_fetch_assoc($result)){
+
+            $returnArr[] = $row;
+            // echo var_dump($row);
+        }
+    }
+    return $returnArr;
+
+    // echo var_dump($result);
+
+}
+function createReview($conn, $title, $body, $rating, $gameID){
+    if(!isset($_SESSION["userID"])){ return false;}
+
+    $query = "INSERT INTO reviews (user_id, game_id, rating, title, review) VALUES (?, ?, ?, ?, ?);";
+
+    $stmt = $conn->prepare($query);
+
+    if ( !$stmt ) { die("could not prepare statement: " . $link->errno . ", error: " . $link->error); } 
+
+    $result = $stmt->bind_param("iiiss", $_SESSION["userID"], $gameID, $rating, $title, $body);
+
+    if ( !$result ) { die("could not bind params: " . $stmt->error); }
+ 
+    if ( !$stmt->execute() ) { die("couldn't execute statement"); }
+
 }
