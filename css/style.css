@@ -492,8 +492,8 @@ body main#description div#reviews, body main#bookmarks div#reviews {
   grid-column: 1 / span 2;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: auto 170px;
-      grid-template-columns: auto 170px;
+  -ms-grid-columns: 1fr 170px;
+      grid-template-columns: 1fr 170px;
   -ms-grid-rows: 40px auto;
       grid-template-rows: 40px auto;
   padding: 1em;
@@ -510,6 +510,7 @@ body main#description div#reviews a, body main#bookmarks div#reviews a {
   margin: 0 0 0 auto;
   background: #7c8d9b;
   color: #355;
+  font-size: 16px;
   border: 1px solid #7c8d9b;
   cursor: pointer;
 }
@@ -530,6 +531,131 @@ body main#description div#reviews div, body main#bookmarks div#reviews div {
 
 body main#description div#reviews div h3, body main#bookmarks div#reviews div h3 {
   font-family: 'Roboto', sans-serif;
+}
+
+body main#description div#reviews div span, body main#bookmarks div#reviews div span {
+  font-size: 14px;
+}
+
+body main#description div#reviews div p, body main#bookmarks div#reviews div p {
+  width: 630px;
+  overflow-x: hidden;
+  margin: .5em 0;
+  color: #abc;
+}
+
+body main#description div#reviews div div, body main#bookmarks div#reviews div div {
+  border: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 1em;
+}
+
+body main#description div#reviews div button, body main#bookmarks div#reviews div button {
+  background: #355;
+  color: #ccc;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  text-decoration: underline;
+  border: none;
+}
+
+body main#description div#reviews div button:hover, body main#bookmarks div#reviews div button:hover {
+  color: #7c8d9b;
+}
+
+body main#description div#reviews div form, body main#bookmarks div#reviews div form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 100px auto;
+      grid-template-columns: 100px auto;
+  -ms-grid-rows: (5)[auto];
+      grid-template-rows: repeat(auto, 5);
+  /* Chrome, Safari, Edge, Opera */
+  /* Firefox */
+}
+
+body main#description div#reviews div form h3, body main#bookmarks div#reviews div form h3 {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / span 2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / span 1;
+}
+
+body main#description div#reviews div form label, body main#description div#reviews div form input, body main#description div#reviews div form textarea, body main#bookmarks div#reviews div form label, body main#bookmarks div#reviews div form input, body main#bookmarks div#reviews div form textarea {
+  font-size: 16px;
+}
+
+body main#description div#reviews div form label, body main#bookmarks div#reviews div form label {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / span 1;
+  background: #ccc;
+  color: #2E2E31;
+  padding: .3em;
+  cursor: pointer;
+}
+
+body main#description div#reviews div form input, body main#bookmarks div#reviews div form input {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / span 1;
+  background: #fff;
+  border: none;
+  padding: 0 .5em;
+  font-size: 16px;
+}
+
+body main#description div#reviews div form textarea, body main#bookmarks div#reviews div form textarea {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / span 2;
+  padding: .5em;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+body main#description div#reviews div form span, body main#bookmarks div#reviews div form span {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / span 1;
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 1;
+  grid-row: 4 / span 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+body main#description div#reviews div form span input, body main#bookmarks div#reviews div form span input {
+  background: #2E2E31;
+  color: #ccc;
+  padding: .6em;
+  cursor: pointer;
+}
+
+body main#description div#reviews div form span input:hover, body main#bookmarks div#reviews div form span input:hover {
+  background: #666;
+}
+
+body main#description div#reviews div form input::-webkit-outer-spin-button,
+body main#description div#reviews div form input::-webkit-inner-spin-button, body main#bookmarks div#reviews div form input::-webkit-outer-spin-button,
+body main#bookmarks div#reviews div form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+body main#description div#reviews div form input[type=number], body main#bookmarks div#reviews div form input[type=number] {
+  -moz-appearance: textfield;
 }
 
 body main#description div#reviews div#newReview, body main#bookmarks div#reviews div#newReview {
@@ -556,6 +682,7 @@ body main#description div#reviews div#newReview form, body main#bookmarks div#re
 
 body main#description div#reviews div#newReview form label, body main#description div#reviews div#newReview form input, body main#description div#reviews div#newReview form textarea, body main#bookmarks div#reviews div#newReview form label, body main#bookmarks div#reviews div#newReview form input, body main#bookmarks div#reviews div#newReview form textarea {
   font-family: 'Roboto', sans-serif;
+  font-size: 16px;
 }
 
 body main#description div#reviews div#newReview form label, body main#bookmarks div#reviews div#newReview form label {

@@ -23,7 +23,7 @@ $h: $b - $c;
 $i: #355;
 
 body{
-    
+
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -48,22 +48,22 @@ body{
         background: $c;
         color: $b;
         justify-content: space-between;
-        
+
         nav{
             // flex-grow: 1;
 
             ul{
                 display: flex;
                 flex-direction: row;
-                
+
                 li{
 
                     a{
                         color: $b;
                         //text-decoration: underline;
-                        
+
                         padding: 1em .5em .5em .5em;
-                        
+
                     }
                     a:hover{
                         background: $b;
@@ -84,9 +84,9 @@ body{
                     a{
                         color: $b;
                         //text-decoration: underline;
-                        
+
                         padding: 1em .5em .5em .5em;
-                        
+
                     }
                     a:hover{
                         background: $b;
@@ -107,7 +107,7 @@ body{
         display: grid;
         grid-template-columns: 1fr 220px;//4fr 1fr;
         grid-template-rows: auto auto;
-        
+
         div#gallery{
             grid-row: 1 / span 1;
             grid-column: 1 / span 1;
@@ -141,7 +141,7 @@ body{
                     border-radius: 5px;
 
                     box-shadow: -3px 5px 2px $g;
-            
+
                     transition: all .4s ease;
 
                     a{
@@ -199,13 +199,13 @@ body{
 
             display: flex;
             flex-direction: column;
-            
-            
+
+
             span#searchbar{
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
-                
+
                 background: $i;
 
                 padding-bottom: 1em;
@@ -243,7 +243,7 @@ body{
                     color: $c;
                 }
             }
-          
+
             form#filterForm{
                 background: $i;
                 display: flex;
@@ -277,7 +277,7 @@ body{
                         padding: .2em .7em;
                         border: none;
                         font-size: 15px;
-                        
+
                     }
                     input[type="submit"]:hover{
                         background: $b;
@@ -287,28 +287,28 @@ body{
                         // width: 90%;
                         // margin-left:1.2em;
                         font-family: sans-serif;
-                        
+
                         // align-items: center;
                         // justify-content: center;
-                        
+
                         font-size: 17px;
                         background: $a;
                         color: $i;
                         border: none;
                         cursor: pointer;
-                        
+
                         option{
                             border: none;
                             cursor: pointer;
                         }
                     }
                 }
-                
+
             }
-            
+
         }
 
-    
+
     }
     main#description, main#bookmarks{
         padding: 0 auto; // margin: 0 auto;
@@ -361,7 +361,7 @@ body{
             div{
                 align-items: center;
                 margin: 15px auto;
-                
+
                 border-radius: 100px;
                 width: 70px;
                 height: 70px;
@@ -387,7 +387,7 @@ body{
             }
             a{
                 height: 80px;
-                
+
                 margin: 10px auto 0 auto;
                 background: $d;
                 padding: .3em;
@@ -397,7 +397,7 @@ body{
                     height: 80px;
                 }
             }
-            
+
         }
         div#gameDescription, div#addToBookmark{
             padding: 1em;
@@ -429,7 +429,7 @@ body{
                     // border-radius: 5px;
                 }
                 input:hover{
-                    background: $i; 
+                    background: $i;
                     color: $h;
                 }
             }
@@ -439,7 +439,7 @@ body{
             grid-column: 1 / span 2;
 
             display: grid;
-            grid-template-columns: auto 170px;
+            grid-template-columns: 1fr 170px;
             grid-template-rows: 40px auto;
 
             padding: 1em;
@@ -458,6 +458,7 @@ body{
                 margin: 0 0 0 auto;
                 background: $h;
                 color: $i;
+                font-size: 16px;
                 border: 1px solid $h;
                 cursor: pointer;
             }
@@ -470,12 +471,117 @@ body{
                 // background: $h;
                 // color: $c;
                 padding: 1em;
-                
+                // max-width: 700px;
+
                 // border-top: 7px solid $i;
+                // background: $h;
                 border: 1px solid $d;
                 margin-top: .5em;
+
                 h3{
                     font-family: 'Roboto', sans-serif;
+
+                }
+                span{
+                    font-size: 14px;
+                }
+                p{
+                    // background: red;
+                    // display: flex;
+                    // flex-direction: row;
+                    // flex-wrap: wrap;
+                    // justify-content: space-between;
+                    width: 630px;
+                    overflow-x: hidden;
+                    margin: .5em 0;
+                    color: $b;
+                }
+
+                div{
+                    border: none;
+                    margin: 0;
+                    padding: 0;
+                    margin-top: 1em;
+                }
+
+                button{
+                    background: $i;
+                    color: $d;
+                    cursor: pointer;
+                    font-family: 'Roboto', sans-serif;
+                    text-decoration: underline;
+                    border: none;
+                }
+                button:hover{
+                    color: $h;
+                }
+
+                form{
+                    display: grid;
+                    grid-template-columns: 100px auto;
+                    // grid-template-rows: 50px 40px 40px 150px 40px;
+                    grid-template-rows: repeat(auto, 5);
+                    // background: $i;
+                    // padding: .5em;
+
+                    h3{
+                        grid-column: 1 / span 2;
+                        grid-row: 1 / span 1;
+                    }
+                    label, input, textarea{
+                        font-size: 16px;
+                    }
+                    label{
+                        grid-column: 1 / span 1;
+                        background: $d;
+                        color: $c;
+                        padding: .3em;
+                        cursor: pointer;
+                    }
+                    input{
+                        grid-column: 2 / span 1;
+
+                        background: $a;
+                        border: none;
+
+                        padding: 0 .5em;
+                        font-size: 16px;
+                    }
+                    textarea{
+                        grid-column: 1 / span 2;
+                        padding: .5em;
+                        border: none;
+                        font-family: 'Roboto', sans-serif;
+                    }
+                    span{
+                        grid-column: 2 / span 1;
+                        grid-row: 4 / span 1;
+
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-end;
+
+                        input{
+                            background: $c;
+                            color: $d;
+                            padding: .6em;
+                            cursor: pointer;
+                        }
+                        input:hover{
+                            background:$f;
+                        }
+                    }
+                    /* Chrome, Safari, Edge, Opera */
+                    input::-webkit-outer-spin-button,
+                    input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                    }
+
+                    /* Firefox */
+                    input[type=number] {
+                    -moz-appearance: textfield;
+                    }
                 }
 
             }
@@ -498,6 +604,7 @@ body{
 
                     label, input, textarea{
                         font-family: 'Roboto', sans-serif;
+                        font-size: 16px;
                     }
                     label{
                         grid-column: 1 / span 1;
@@ -505,7 +612,7 @@ body{
                         color: $c;
                         padding: .6em;
                         cursor: pointer;
-                        
+
                     }
                     input{
                         grid-column: 2 / span 1;
@@ -550,8 +657,9 @@ body{
                 }
 
             }
+
         }
-        
+
     }
     main#bookmarks{
         display: flex;
@@ -618,7 +726,7 @@ body{
 
         //color: $b;
         //background: $c;
-        
+
         input, label{
             font-size: 1em;
             font-family: 'Roboto', sans-serif;
@@ -635,7 +743,7 @@ body{
             padding: 0 .5em;
             color: $c;
         }
-        
+
         input[type="submit"]{
             grid-row: 4 / span 1;
             grid-column: 1 / span 1;
@@ -643,11 +751,11 @@ body{
             text-decoration: none;
             border:none;
             font-size: 1em;
-            
+
             color: $d;
             background: $c;
         }
-        
+
         input[type="submit"]:hover, input[type="submit"]:focus{
             background: $f;
             color: $d;
@@ -668,7 +776,7 @@ body{
         span#errorMessageLogin.active, span#errorMessageRegister.active{
             display: block;
         }
-        
+
     }
     form.error, form.error{
         border: 2px solid red;

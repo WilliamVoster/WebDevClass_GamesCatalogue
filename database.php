@@ -328,3 +328,18 @@ function createReview($conn, $title, $body, $rating, $gameID){
     if ( !$stmt->execute() ) { die("couldn't execute statement"); }
 
 }
+function deleteReview($conn, $reviewID){
+    if(!isset($_SESSION["userID"])){ return false;}
+
+    $query = "DELETE FROM reviews WHERE id = ?";
+
+    $stmt = $conn->prepare($query);
+
+    if ( !$stmt ) { die("could not prepare statement: " . $link->errno . ", error: " . $link->error); } 
+
+    $result = $stmt->bind_param("i", $reviewID);
+
+    if ( !$result ) { die("could not bind params: " . $stmt->error); }
+ 
+    if ( !$stmt->execute() ) { die("couldn't execute statement"); }
+}

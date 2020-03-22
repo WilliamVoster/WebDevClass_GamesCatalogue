@@ -125,7 +125,14 @@
                         // echo "test";
                     }
                     $reviews = [];
-                    foreach (getReviews($conn) as $row) {
+                    if(isset($_POST["deleteReview"])){
+                        deleteReview($conn, $_POST["reviewID"]);
+                    }
+                    if(isset($_POST["editReview"])){
+                        deleteReview($conn, $_POST["reviewID"]);
+                        createReview($conn, $_POST["reviewTitle"], $_POST["reviewBody"],  $_POST["reviewRating"], $id);
+                    }
+                    foreach (array_reverse(getReviews($conn)) as $row) {
                         if($row["game_id"] == $_GET["game"]){
                             $reviews[] = $row;
                         }
@@ -166,16 +173,33 @@
 
                     if(count($reviews) > 0){
                     foreach ($reviews as $review) {
+                        $title = $review["title"] != "" ? $review["title"] : "No title";
                         echo 
                             "<div>" .
-                            "<h3>" . $review["title"] . "</h3>" .
+                            "<h3>" . $title . "</h3>" .
+                            "<span>Rating: " . $review["rating"] . "</span><br>" .
+                            "<span>Author: " . $review["user_id"] . "</span>" .
                             "<p>" . $review["review"] . "</p>";
                             if(isset($_SESSION["userID"])){
                                 if($review["user_id"] == $_SESSION["userID"]){
-                                echo 
-                                    "<form action=\"./description.php\" method=\"POST\">
-                                    <input type=\"submit\" name=\"editReview\" value=\"Edit review\">
-                                    </form>";
+                                    echo 
+                                        "<button onclick=\"
+                                        document.getElementById('editReview" . $review["id"] . "').classList.toggle('hidden');
+                                        \">Edit review</button>";
+                                    echo 
+                                        "<div id=\"editReview" . $review["id"] . "\" class=\"hidden\">" . 
+                                        "<h3>Edit your review for '" . $gameInfo["title"] . "'</h3>" .
+                                        "<form action=\"#\" method=\"POST\" id=\"editReviewForm\">" .
+                                            "<label for=\"reviewTitle\">Title</label>" .
+                                            "<input type=\"text\" id=\"reviewTitle\" name=\"reviewTitle\" value=\"" . $review["title"] . "\">" .
+                                            "<label for=\"reviewRating\">Rating in %</label>" .
+                                            "<input type=\"number\" id=\"reviewRating\" name=\"reviewRating\" min=\"0\" max=\"100\" value=\"" . $review["rating"] . "\">" .
+                                            "<textarea rows=\"5\" cols=\"50\" name=\"reviewBody\"
+                                            style=\"resize: none;\" placeholder=\"Edit review here \">" . $review["review"] . "</textarea>" .
+                                            "<input type=\"hidden\" name=\"reviewID\" value=\"" . $review["id"] . "\">" .
+                                            "<span><input type=\"submit\" name=\"deleteReview\" value=\"Delete Review\">" .
+                                            "<input type=\"submit\" name=\"editReview\" value=\"Edit review\"></span>" .
+                                        "</form></div>";
                                 }
                             }
                             

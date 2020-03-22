@@ -29,7 +29,7 @@
         <label for="passwordInputLogin">Password</label>
         <input id="passwordInputLogin" type="password" name="password" >
         <input type="submit" name="submit" value="Login">
-        <span id="errorMessageLogin"><strong>User does not exist.</strong></span>
+        <span id="errorMessageLogin"><strong>Login error</strong></span>
     </form> 
 
 
