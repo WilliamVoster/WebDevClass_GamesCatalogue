@@ -136,6 +136,7 @@ body main div#gallery ul {
 body main div#gallery ul li {
   width: 350px;
   height: 200px;
+  cursor: pointer;
   background: #7c8d9b;
   margin: .5em;
   border-radius: 5px;
@@ -170,6 +171,29 @@ body main div#gallery ul li img {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   z-index: 2;
+}
+
+body main div#gallery ul li#addGameli {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main div#gallery ul li#addGameli a {
+  width: 100%;
+}
+
+body main div#gallery ul li#addGameli img {
+  margin: auto;
+  width: 100px;
+  height: 100px;
 }
 
 body main div#gallery ul li:hover {

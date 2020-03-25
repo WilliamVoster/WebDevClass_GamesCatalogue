@@ -116,13 +116,20 @@
                     if(isset($_POST["newReview"])){
                         //echo var_dump($_POST);
                         // echo htmlspecialchars($_POST["reviewBody"]);
-                        createReview(
-                            $conn, 
-                            $_POST["reviewTitle"], 
-                            htmlspecialchars($_POST["reviewBody"]), 
-                            $_POST["reviewRating"], 
-                            $id);
-                        // echo "test";
+                        // $reviewsFromUsers = [];
+                        // foreach (getReviews($conn) as $review) {
+                        //     $reviewsFromUsers[] = $review["user_id"];
+                        // }
+                        // if(!in_array($_SESSION["userID"], $reviewsFromUsers)){
+                        if(!hasReview($conn, $_SESSION["userID"], $id)){
+
+                            createReview(
+                                $conn, 
+                                $_POST["reviewTitle"], 
+                                htmlspecialchars($_POST["reviewBody"]), 
+                                $_POST["reviewRating"], 
+                                $id);
+                        }
                     }
                     $reviews = [];
                     if(isset($_POST["deleteReview"])){
@@ -143,7 +150,7 @@
 
                     echo "<a href=\"#\" id=\"showNewReview\"";
                     if(!isset($_SESSION["username"])){echo "class=\"hidden\"";}
-                    echo ">Write review</a>";
+                    if(!hasReview($conn, $_SESSION["userID"], $id)){echo ">Edit review</a>";}else{echo ">Write review</a>";}
 
                     echo 
                         "<div id=\"newReview\" class=\"hidden\">" . 
@@ -158,18 +165,6 @@
                         "<input type=\"submit\" name=\"newReview\" value=\"Create review\">" .
                         "</form></div>";
                     
-                    echo 
-                        "<script type=\"text/javascript\">
-                            showNewReview = document.getElementById(\"showNewReview\");
-                            newReview = document.getElementById(\"newReview\");
-                            flipBool = false;
-                            showNewReview.onclick = () => {
-                                newReview.classList.toggle(\"hidden\");
-                                if(flipBool){ showNewReview.innerHTML = \"Write review\"; 
-                                }else{ showNewReview.innerHTML = \"Close\"; }
-                                flipBool = !flipBool;
-                            }
-                        </script>";
 
                     if(count($reviews) > 0){
                     foreach ($reviews as $review) {
@@ -178,12 +173,12 @@
                             "<div>" .
                             "<h3>" . $title . "</h3>" .
                             "<span>Rating: " . $review["rating"] . "</span><br>" .
-                            "<span>Author: " . $review["user_id"] . "</span>" .
+                            "<span>Author: " . $review["uname"] . "</span>" .
                             "<p>" . $review["review"] . "</p>";
                             if(isset($_SESSION["userID"])){
                                 if($review["user_id"] == $_SESSION["userID"]){
                                     echo 
-                                        "<button onclick=\"
+                                        "<button id=\"showEditReview" . $_SESSION["userID"] . "\" onclick=\"
                                         document.getElementById('editReview" . $review["id"] . "').classList.toggle('hidden');
                                         \">Edit review</button>";
                                     echo 
@@ -209,7 +204,25 @@
                         
                     }
 
-                    
+                    echo 
+                        "<script type=\"text/javascript\">
+                            showNewReview = document.getElementById(\"showNewReview\");
+                            showEditReview = document.getElementById(\"showEditReview" . $_SESSION["userID"] . "\");
+                            newReview = document.getElementById(\"newReview\");
+                            flipBool = false;
+                            showNewReview.onclick = () => {";
+                    if(!hasReview($conn, $_SESSION["userID"], $id)){
+                        echo   "newReview.classList.toggle(\"hidden\");
+                                if(flipBool){ showNewReview.innerHTML = \"Write review\"; 
+                                }else{ showNewReview.innerHTML = \"Close\"; }
+                                flipBool = !flipBool;";
+                    }else{            
+                        echo   "showEditReview.click();
+                                if(flipBool){ showNewReview.innerHTML = \"Edit review\"; 
+                                }else{ showNewReview.innerHTML = \"Close\"; }
+                                flipBool = !flipBool;";
+                    }    
+                    echo   "}</script>";
 
                     echo "</div>";
 

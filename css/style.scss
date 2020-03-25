@@ -98,8 +98,6 @@ body{
 
         }
     }
-
-
     main{
         background: $h;
 
@@ -131,6 +129,7 @@ body{
                     width: 350px;
                     height: 200px;
 
+                    cursor: pointer;
                     // display: flex;
                     // flex-direction: column;
 
@@ -176,6 +175,19 @@ body{
                         z-index: 2;
                     }
 
+                }
+                li#addGameli{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    a{
+                        width: 100%;
+                    }
+                    img{
+                        margin: auto;
+                        width: 100px;
+                        height: 100px;
+                    }
                 }
                 li:hover{
                     // background-image: linear-gradient(225deg, $b, red);

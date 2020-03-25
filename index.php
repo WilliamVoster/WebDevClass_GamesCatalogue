@@ -154,6 +154,28 @@
                         echo "No results";
                     }
                 }
+                if(isset($_SESSION["isAdmin"])){
+                    echo
+                    "<li id=\"addGameli\">" .
+                        "<a href=\"#\" onclick=\"console.log('test');\">Add game</a>" .
+                        "<img src=\"./media/add.png\">" .
+                    "</li>";
+                    echo
+                    "<li><form action=\"#\" method=\"post\">
+                        <input type=\"text\" name=\"newGameTitle\">
+                        <input type=\"text\" name=\"newGameImage\">
+                        <select name=\"genre\" id=\"newGameGenre\">
+                            <option value=\"???\">Select Genre</option>
+                            <option value=\"fps\">First Person Shooter</option>
+                            <option value=\"rpg\">Role Playing Game</option>
+                            <option value=\"sim\">Simulator Game</option>
+                            <option value=\"str\">Strategy Game</option>
+                        </select>
+                        <input type=\"numbers\" name=\"newGameRating\">
+                        <textarea name=\"newGameDescription\" id=\"\" cols=\"30\" rows=\"10\"></textarea>
+                        <input type=\"submit\" name=\"newGameSubmit\" value=\"Add game\">
+                    </form></li>";
+                }
                 foreach($_SESSION["games"] as $game){
                     echo 
                     "<li id =\"" . $game["id"] . "\">" .

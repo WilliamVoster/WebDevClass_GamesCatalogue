@@ -35,7 +35,6 @@ function connect(){
 
     return $link;
 }
-
 function get_messages($link) {
     $records = array();
 
@@ -52,7 +51,6 @@ function get_messages($link) {
     
     return $records;
 }
-
 function save_message($link, $data) {
     // prepared statemenets = no sql injection \o/
 
@@ -76,7 +74,6 @@ function save_message($link, $data) {
 
     // you can also alter data and call execute again to send another message...
 }
-
 function generateSalt(){
     $length = mt_rand(5, 10);
     $salt = "";
@@ -86,7 +83,6 @@ function generateSalt(){
     }
     return $salt;
 }
-
 function register($link, $data){
     // echo var_dump($data['username']);
 
@@ -111,7 +107,6 @@ function register($link, $data){
     //If no user exist with that username return true:
     return true;
 }
-
 function checkForUser($link, $data){
 
     $username = $data["username"];
@@ -133,7 +128,6 @@ function checkForUser($link, $data){
 
     return $records;
 }
-
 function login($link, $data){
 
     $previousUser = checkForUser($link, $data);
@@ -144,11 +138,15 @@ function login($link, $data){
     $hash = $previousUser[0]["pass"];
     $salt = $previousUser[0]["salt"];
     $password = $data["password"];
+    $isAdmin = $previousUser[0]["is_admin"] == 1 ? true : false;
 
     if ($hash == sha1($password . $salt)){
         //echo "right password!";
         $_SESSION["username"] = $username;
         $_SESSION["userID"] = $previousUser[0]["id"];
+        if($isAdmin){
+            $_SESSION["isAdmin"] = $isAdmin;
+        }
 
         return true;
     }else{
@@ -156,7 +154,6 @@ function login($link, $data){
         return false;
     }
 }
-
 function filterGenreRating($link, $genre, $rating){
     $genreBool = false;
     $ratingBool = false;
@@ -201,7 +198,6 @@ function filterGenreRating($link, $genre, $rating){
     return $returnArr;
 
 }
-
 function filterSearch($link, $keyword){
     $returnArr = [];
     if($keyword == ""){
@@ -295,7 +291,8 @@ function getBookmarks($conn){
 }
 function getReviews($conn){
 
-    $query = "SELECT id, user_id, game_id, rating, title, review from reviews;";
+    $query = "SELECT reviews.id, user_id, game_id, rating, title, review, users.uname from reviews, users where reviews.user_id = users.id;";
+
     $result = mysqli_query($conn, $query);
 
     $returnArr = [];
@@ -342,4 +339,20 @@ function deleteReview($conn, $reviewID){
     if ( !$result ) { die("could not bind params: " . $stmt->error); }
  
     if ( !$stmt->execute() ) { die("couldn't execute statement"); }
+}
+function hasReview($conn, $userID, $gameID){
+    if(!isset($userID) || !isset($gameID)){ return false;}
+
+    $query = "SELECT user_id FROM reviews";
+    $result = mysqli_query($conn, $query);
+
+    $returnArr = [];
+    if(mysqli_num_rows($result) > 0){
+        while($row = mysqli_fetch_assoc($result)){
+            array_push($returnArr, $row["user_id"]);
+        }
+    }
+
+    return in_array($userID, $returnArr);
+        
 }
