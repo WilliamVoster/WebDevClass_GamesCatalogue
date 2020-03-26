@@ -4,7 +4,6 @@
         <ul>
             <li><a href="./index.php">Home</a></li>
             <li><a href="./bookmarks.php">Bookmarks</a></li>
-            <li><a href="./reviews">My reviews</a></li>
         </ul>
     </nav>
 

@@ -1,37 +1,9 @@
 <!-- registration number: 1906423 -->
 <?php
-
     session_start();
 
-    $server   = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "assignment2020";
-    $log = "";
-
-    // $server   = "cseemyweb.essex.ac.uk"; // essexweb something...something
-    // $username = "tv19295";
-    // $password = "6LXLZTzFqdKle";
-    // $database = "ce154_tv19295";
-    // $log = "";
-
-    $conn = new mysqli($server, $username, $password, $database);
-
-    if(!$conn){
-        $log = $log . mysqli_connect_error();
-        die();
-    }else{
-        $log = $log . "connected";
-    }
-
-    $sql    = "SELECT id, title, image, genre, rating, description FROM games;";
-    $result = mysqli_query($conn, $sql);
-
-    $bookmarkSql    = "SELECT user_id, game_id FROM bookmarks;";
-    $bookmarkResult = mysqli_query($conn, $bookmarkSql);
-
     include("./database.php");
-    // $conn = connect();
+    $conn = connect();
 
 
 ?>
@@ -91,101 +63,139 @@
         </div>
             
         <div id="gallery">
-            <ul>
-                <?php
-                if(mysqli_num_rows($result) > 0){
-                    while($row = mysqli_fetch_assoc($result)){
-                        $_SESSION["games"][$row["id"]] = [
-                            "id" => $row["id"],
-                            "title" => $row["title"], 
-                            "image" => $row["image"], 
-                            "genre" => $row["genre"], 
-                            "rating" => $row["rating"],
-                            "description" => $row["description"]
-                        ];
-                        
-                    }
-                }
-                if(mysqli_num_rows($bookmarkResult) > 0 and isset($_SESSION["username"])){
-                    $_SESSION["bookmark"] = [];
-                    while($row = mysqli_fetch_assoc($bookmarkResult)){
-                        // echo var_dump($row);
-                        if($row["user_id"] == $_SESSION["userID"]){
-                            $_SESSION["bookmark"][] = $row["game_id"];
-                        }
-                        // else{
-                        //     $_SESSION["bookmark"][$row["user_id"]] = false;
-                        // }
-                    }
-                    // echo var_dump($_SESSION["bookmark"]);
-                }
-                if(isset($_GET["search"])){
-                    $result = filterSearch($conn, $_GET["search"]); 
-                    
-                }elseif((isset($_GET["genre"]) and $_GET["genre"] != "") or isset($_GET["over80Rating"])){
-                    // if($_GET["genre"] != "" or $_GET["over80Rating"] == "on"){
-                        $rating = "off";
-                        if(isset($_GET["over80Rating"])){  $rating = $_GET["over80Rating"]; }
+        <?php
 
-                        $result = filterGenreRating($conn, $_GET["genre"], $rating);
-                    // }
-                }
-                if(
-                    isset($_GET["search"]) or 
-                    (isset($_GET["genre"]) and $_GET["genre"] != "") or 
-                    (isset($_GET["over80Rating"]) and $_GET["over80Rating"] == "on")){
-                    // echo var_dump($result);
+        if(isset($_POST["newGameSubmit"])){
+            addGame(
+                $conn,
+                $_POST["newGameTitle"],
+                $_POST["newGameImage"],
+                $_POST["newGameGenre"],
+                $_POST["newGameRating"],
+                $_POST["newGameDescription"]
+            );
+        }
+        
+        if(isset($_SESSION["isAdmin"])){
+            echo
+            "<div id=\"addGame\">" .
+                "<span><label for=\"showAddGame\">Admin function: </label>
+                <button id=\"showAddGame\">Add game</button></span>" .
+                "<img src=\"./media/add.png\">" .
+                "<div id=\"addGameForm\" class=\"hidden\"><form action=\"#\" method=\"post\" class=\"hidden\">
+                    <label for=\"newGameTitle\">Title</label>
+                    <input type=\"text\" name=\"newGameTitle\" id=\"newGameTitle\">
+                    <label for=\"newGameImage\">Image URL</label>
+                    <input type=\"text\" name=\"newGameImage\" id=\"newGameImage\">
+                    <label for=\"newGameGenre\">Genre</label>
+                    <select name=\"newGameGenre\" id=\"newGameGenre\">
+                        <option value=\"???\">Select Genre</option>
+                        <option value=\"fps\">First Person Shooter</option>
+                        <option value=\"rpg\">Role Playing Game</option>
+                        <option value=\"sim\">Simulator Game</option>
+                        <option value=\"str\">Strategy Game</option>
+                    </select>
+                    <label for=\"newGameRating\">Rating in %</label>
+                    <input type=\"number\" name=\"newGameRating\" id=\"newGameRating\" min=\"0\" max=\"100\">
+                    <textarea name=\"newGameDescription\" id=\"newGameDescription\" cols=\"30\" rows=\"10\" 
+                    style=\"resize: none;\" placeholder=\"Description\"></textarea>
+                    <span><input type=\"submit\" name=\"newGameSubmit\" value=\"Add game\"></span>
+                </form></div>
+            </div>";
+        }
+        echo "
+        <script type=\"text/javascript\">
+        let showAddGame = document.getElementById(\"showAddGame\");
+        let addGameForm = document.getElementById(\"addGameForm\");
+        flipBool = false;
+        showAddGame.onclick = () => {
+            addGameForm.classList.toggle(\"hidden\");
+            if(flipBool){showAddGame.innerHTML = \"Add game\"; flipBool = !flipBool;
+            }else{showAddGame.innerHTML = \"Close\"; flipBool = !flipBool;}
+        }
+        </script>";
+        
+        ?>
+        <ul>
+        <?php
+        $sql    = "SELECT id, title, image, genre, rating, description FROM games;";
+        $result = mysqli_query($conn, $sql);
+    
+        $bookmarkSql    = "SELECT user_id, game_id FROM bookmarks;";
+        $bookmarkResult = mysqli_query($conn, $bookmarkSql);
+        $_SESSION["games"] = [];
 
-                    if(count($result) > 0){
-                        $_SESSION["games"] = [];
-                        foreach($result as $game){
-                            // echo var_dump($game);
-                            $_SESSION["games"][$game["id"]] = [
-                                "id"    => $game["id"],
-                                "title" => $game["title"], 
-                                "image" => $game["image"], 
-                                "genre" => $game["genre"], 
-                                "rating" => $game["rating"],
-                                "description" => $game["description"]
-                            ];
-                        }
-                    }else{
-                        $_SESSION["games"] = [];
-                        echo "No results";
-                    }
+        if(mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_assoc($result)){
+                $_SESSION["games"][$row["id"]] = [
+                    "id" => $row["id"],
+                    "title" => $row["title"], 
+                    "image" => $row["image"], 
+                    "genre" => $row["genre"], 
+                    "rating" => $row["rating"],
+                    "description" => $row["description"]
+                ];
+                
+            }
+        }
+        if(mysqli_num_rows($bookmarkResult) > 0 and isset($_SESSION["username"])){
+            $_SESSION["bookmark"] = [];
+            while($row = mysqli_fetch_assoc($bookmarkResult)){
+                // echo var_dump($row);
+                if($row["user_id"] == $_SESSION["userID"]){
+                    $_SESSION["bookmark"][] = $row["game_id"];
                 }
-                if(isset($_SESSION["isAdmin"])){
-                    echo
-                    "<li id=\"addGameli\">" .
-                        "<a href=\"#\" onclick=\"console.log('test');\">Add game</a>" .
-                        "<img src=\"./media/add.png\">" .
-                    "</li>";
-                    echo
-                    "<li><form action=\"#\" method=\"post\">
-                        <input type=\"text\" name=\"newGameTitle\">
-                        <input type=\"text\" name=\"newGameImage\">
-                        <select name=\"genre\" id=\"newGameGenre\">
-                            <option value=\"???\">Select Genre</option>
-                            <option value=\"fps\">First Person Shooter</option>
-                            <option value=\"rpg\">Role Playing Game</option>
-                            <option value=\"sim\">Simulator Game</option>
-                            <option value=\"str\">Strategy Game</option>
-                        </select>
-                        <input type=\"numbers\" name=\"newGameRating\">
-                        <textarea name=\"newGameDescription\" id=\"\" cols=\"30\" rows=\"10\"></textarea>
-                        <input type=\"submit\" name=\"newGameSubmit\" value=\"Add game\">
-                    </form></li>";
-                }
-                foreach($_SESSION["games"] as $game){
-                    echo 
-                    "<li id =\"" . $game["id"] . "\">" .
-                        "<a href=\"./description.php?game=" . $game["id"] . "\">" . $game["title"] . "</a>" .
-                        "<img src=\"./media/" . $game["image"] . "\">" .
-                    "</li>";
-                }
-                ?>
+                // else{
+                //     $_SESSION["bookmark"][$row["user_id"]] = false;
+                // }
+            }
+            // echo var_dump($_SESSION["bookmark"]);
+        }
+        if(isset($_GET["search"])){
+            $result = filterSearch($conn, $_GET["search"]); 
+            
+        }elseif((isset($_GET["genre"]) and $_GET["genre"] != "") or isset($_GET["over80Rating"])){
+            // if($_GET["genre"] != "" or $_GET["over80Rating"] == "on"){
+                $rating = "off";
+                if(isset($_GET["over80Rating"])){  $rating = $_GET["over80Rating"]; }
 
-            </ul>
+                $result = filterGenreRating($conn, $_GET["genre"], $rating);
+            // }
+        }
+        if(
+            isset($_GET["search"]) or 
+            (isset($_GET["genre"]) and $_GET["genre"] != "") or 
+            (isset($_GET["over80Rating"]) and $_GET["over80Rating"] == "on")){
+            // echo var_dump($result);
+
+            if(count($result) > 0){
+                $_SESSION["games"] = [];
+                foreach($result as $game){
+                    // echo var_dump($game);
+                    $_SESSION["games"][$game["id"]] = [
+                        "id"    => $game["id"],
+                        "title" => $game["title"], 
+                        "image" => $game["image"], 
+                        "genre" => $game["genre"], 
+                        "rating" => $game["rating"],
+                        "description" => $game["description"]
+                    ];
+                }
+            }else{
+                $_SESSION["games"] = [];
+                echo "No results";
+            }
+        }
+        foreach($_SESSION["games"] as $game){
+            echo 
+            "<li id =\"" . $game["id"] . "\">" .
+                "<a href=\"./description.php?game=" . $game["id"] . "\">" . $game["title"] . "</a>" .
+                "<img src=\"" . $game["image"] . "\">" .
+            "</li>";
+        }
+        ?>
+
+        </ul>
 
         </div>
     </main>

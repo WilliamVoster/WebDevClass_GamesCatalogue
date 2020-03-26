@@ -56,28 +56,28 @@ INSERT INTO `genres` VALUES ("sim", "Simulation Game");
 INSERT INTO `genres` VALUES ("???", "Other");
 
 -- game list (yes, I'm including ones with strange letters on purpose)
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Sid Meier's Civilization V: Brave New World", "civilization5BraveNewWorld.jpg", "str", 85); -- 8 Jul 2013
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Crusader Kings II", "crusaderKings2.jpg", "str", 82); -- 14 feb 2012
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Warcraft III: Reforged", "warcraft3Reforged.jpg", "str", 60); -- 28 jan 2020
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Sid Meier's Civilization V: Brave New World", "./media/civilization5BraveNewWorld.jpg", "str", 85); -- 8 Jul 2013
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Crusader Kings II", "./media/crusaderKings2.jpg", "str", 82); -- 14 feb 2012
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Warcraft III: Reforged", "./media/warcraft3Reforged.jpg", "str", 60); -- 28 jan 2020
 
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Else Heart.Break()", "elseHeartBreak().jpg", "rpg", 79); -- Sep 24 2015
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Shadowrun: Dragonfall - Director's Cut", "shadowrunDragonfall.jpg", "rpg", 87); -- 18 sep 2014
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Stardew Valley", "stardewValley.jpeg", "rpg", 89); -- 26 feb 2016 (it has the RPG tag on steam, it counts...)
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Disco Elysium", "discoElysium.jpg", "rpg", 91); -- 15 oct 2019
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Else Heart.Break()", "./media/elseHeartBreak().jpg", "rpg", 79); -- Sep 24 2015
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Shadowrun: Dragonfall - Director's Cut", "./media/shadowrunDragonfall.jpg", "rpg", 87); -- 18 sep 2014
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Stardew Valley", "./media/stardewValley.jpeg", "rpg", 89); -- 26 feb 2016 (it has the RPG tag on steam, it counts...)
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Disco Elysium", "./media/discoElysium.jpg", "rpg", 91); -- 15 oct 2019
 
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "RimWorld", "rimworld.jpg", "sim", 87); -- 17 oct 2018
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Tom Clancy's Rainbow Six® Siege", "rainbowSixSiege.jpg", "fps", 0); -- 1 dec 2015, metacritic score wasn't on steam page
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Euro Truck Simulator 2", "euroTruckSimulator.jpg", "sim", 79); -- 18 oct 2012
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Farming Simulator 19", "farmingSimulator2019.jpg", "sim", 73); -- 19 Nov, 2018
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Train Simulator 2020", "trainSimulator2020.jpg", "sim", 0); -- 12 jul 2009 *shrugs at release date on steam...*
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "RimWorld", "./media/rimworld.jpg", "sim", 87); -- 17 oct 2018
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Tom Clancy's Rainbow Six® Siege", "./media/rainbowSixSiege.jpg", "fps", 0); -- 1 dec 2015, metacritic score wasn't on steam page
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Euro Truck Simulator 2", "./media/euroTruckSimulator.jpg", "sim", 79); -- 18 oct 2012
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Farming Simulator 19", "./media/farmingSimulator2019.jpg", "sim", 73); -- 19 Nov, 2018
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Train Simulator 2020", "./media/trainSimulator2020.jpg", "sim", 0); -- 12 jul 2009 *shrugs at release date on steam...*
 
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Project Zomboid", "projectZomboid.jpg", "rpg", 87); -- 8 nov 2013
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Shadowrun Returns", "shadowrunReturns.jpg", "rpg", 76); -- 25 july 2013
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Shadowrun: Hong Kong - Extended Edition", "shadowrunHongKong.jpg", "rpg", 81); -- 20 aug 2015
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Project Zomboid", "./media/projectZomboid.jpg", "rpg", 87); -- 8 nov 2013
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Shadowrun Returns", "./media/shadowrunReturns.jpg", "rpg", 76); -- 25 july 2013
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Shadowrun: Hong Kong - Extended Edition", "./media/shadowrunHongKong.jpg", "rpg", 81); -- 20 aug 2015
 
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Cave Story+", "caveStory+.jpg", "???", 81); -- 22 nov 2011
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Sorcery! Parts 1 & 2", "sorceryPart1And2.jpg", "???", 69); -- 2 feb 2016
-INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Dwarf Fortress", "dwarfFortress.jpg", "???", 0); -- 'time is subjective' isn't a valid release date...
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Cave Story+", "./media/caveStory+.jpg", "???", 81); -- 22 nov 2011
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Sorcery! Parts 1 & 2", "./media/sorceryPart1And2.jpg", "???", 69); -- 2 feb 2016
+INSERT INTO `games` (id, title, image, genre, rating) VALUES (NULL, "Dwarf Fortress", "./media/dwarfFortress.jpg", "???", 0); -- 'time is subjective' isn't a valid release date...
 
 -- game descriptions
 update games set description = "The Flagship Turn-Based Strategy Game Returns <br> Become Ruler of the World by establishing and leading a civilization from the dawn of man into the space age: Wage war, conduct diplomacy, discover new technologies, go head-to-head with some of history’s greatest leaders and build the most powerful empire the world has ever known."

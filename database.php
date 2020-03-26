@@ -334,7 +334,7 @@ function deleteReview($conn, $reviewID){
 
     if ( !$stmt ) { die("could not prepare statement: " . $link->errno . ", error: " . $link->error); } 
 
-    $result = $stmt->bind_param("i", $reviewID);
+    $result = $stmt->bind_param("i", $reviewID, );
 
     if ( !$result ) { die("could not bind params: " . $stmt->error); }
  
@@ -343,16 +343,84 @@ function deleteReview($conn, $reviewID){
 function hasReview($conn, $userID, $gameID){
     if(!isset($userID) || !isset($gameID)){ return false;}
 
-    $query = "SELECT user_id FROM reviews";
+    $query = "SELECT user_id, game_id FROM reviews";
     $result = mysqli_query($conn, $query);
 
     $returnArr = [];
     if(mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_assoc($result)){
-            array_push($returnArr, $row["user_id"]);
+            array_push($returnArr, [$row["user_id"], $row["game_id"]]);
         }
     }
 
-    return in_array($userID, $returnArr);
+    foreach ($returnArr as $pair) {
+        if($pair[0] == $userID && $pair[1] == $gameID){
+            return true;
+        }
+    }
+    // return in_array($userID, $returnArr);
+    // echo var_dump($returnArr);
+    return false;
         
+}
+function addGame($conn, $title, $image, $genre, $rating, $description){
+    if(!isset($_SESSION["userID"]) || !isset($_SESSION["isAdmin"])){ return false;}
+
+    $query = "INSERT INTO games (title, image, genre, rating, description) VALUES (?, ?, ?, ?, ?);";
+    
+    $stmt = $conn->prepare($query);
+
+    if ( !$stmt ) { die("could not prepare statement: " . $link->errno . ", error: " . $link->error); } 
+
+    $result = $stmt->bind_param("sssis", $title, $image, $genre, $rating, $description);
+
+    if ( !$result ) { die("could not bind params: " . $stmt->error); }
+ 
+    if ( !$stmt->execute() ) { die("couldn't execute statement"); }
+
+}
+function removeGame($conn, $gameID){
+    if(!isset($_SESSION["userID"]) || !isset($_SESSION["isAdmin"])){ return false;}
+
+    $query = "DELETE FROM games where id = ?";
+    
+    $stmt = $conn->prepare($query);
+
+    if ( !$stmt ) { die("could not prepare statement: " . $link->errno . ", error: " . $link->error); } 
+
+    $result = $stmt->bind_param("i", $gameID);
+
+    if ( !$result ) { die("could not bind params: " . $stmt->error); }
+ 
+    if ( !$stmt->execute() ) { die("couldn't execute statement"); }
+
+
+    //clear reviews
+    $query = "DELETE FROM reviews where game_id = ?";
+    
+    $stmt = $conn->prepare($query);
+
+    if ( !$stmt ) { die("could not prepare statement: " . $link->errno . ", error: " . $link->error); } 
+
+    $result = $stmt->bind_param("i", $gameID);
+
+    if ( !$result ) { die("could not bind params: " . $stmt->error); }
+ 
+    if ( !$stmt->execute() ) { die("couldn't execute statement"); }
+
+
+    //clear bookmarks
+    $query = "DELETE FROM bookmarks where game_id = ?";
+    
+    $stmt = $conn->prepare($query);
+
+    if ( !$stmt ) { die("could not prepare statement: " . $link->errno . ", error: " . $link->error); } 
+
+    $result = $stmt->bind_param("i", $gameID);
+
+    if ( !$result ) { die("could not bind params: " . $stmt->error); }
+ 
+    if ( !$stmt->execute() ) { die("couldn't execute statement"); }
+
+
 }

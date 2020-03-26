@@ -115,6 +115,7 @@ body{
 
             display: flex;
             align-items: flex-start;
+            flex-direction: column;
 
             ul{
                 justify-content: center;
@@ -176,19 +177,24 @@ body{
                     }
 
                 }
-                li#addGameli{
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    a{
-                        width: 100%;
-                    }
-                    img{
-                        margin: auto;
-                        width: 100px;
-                        height: 100px;
-                    }
-                }
+                // li#addGameli{
+                //     display: flex;
+                //     flex-direction: column;
+                //     align-items: center;
+                //     a{
+                //         width: 100%;
+                //     }
+                //     img{
+                //         margin: auto;
+                //         width: 100px;
+                //         height: 100px;
+                //         display: none;
+                //     }
+                //     width: 300px;
+                //     height: 250px;
+                //     form{
+                //     }
+                // }
                 li:hover{
                     // background-image: linear-gradient(225deg, $b, red);
                     //background-image: linear-gradient(225deg, $b, #0F6);
@@ -196,6 +202,112 @@ body{
                     transform: scaleX(1.05) scaleY(1.09);
                 }
 
+            }
+
+            div#addGame{
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                
+                span{
+                    // width: 300px;
+                    margin-bottom: .5em;
+                    button{
+                        padding: .3em;
+                        width: 100px;
+                        font-size: 16px;
+                        cursor: pointer;
+                        border: none;
+                        background: $c;
+                        color: $d;
+                        line-height: 20px;
+                    }
+                    button:hover{
+                        background: $f;
+                    }
+                    label{
+                        
+                        background: $d;
+                        color: $c;
+                        padding: .3em;
+                        cursor: pointer;
+                        padding-top: .4em;
+                    }
+                }
+                img{
+                    display: none;
+                }
+                div#addGameForm{
+                    form{
+                    width: 350px;
+                    display: grid;
+                    grid-template-columns: 150px, auto;
+                    grid-template-rows: repeat(auto, 5);
+
+                    label, input, select, textarea, option{
+                        font-family: 'Roboto', sans-serif;
+                        color: $c;
+                    }
+                    label{
+                        grid-column: 1 / span 1;
+                        background: $d;
+                        color: $c;
+                        padding: .3em;
+                        cursor: pointer;
+                    }
+                    input, select{
+                        grid-column: 2 / span 1;
+                        background: $a;
+                        border: none;
+
+                        padding: 0 .5em;
+                        font-size: 16px;
+                    }
+                    select{
+                        cursor: pointer;
+                        padding: 0 .2em;
+                    }
+                    textarea{
+                        grid-column: 1 / span 2;
+                        padding: .5em;
+                        border: none;
+                        
+                    }
+                    span{
+                        grid-column: 2 / span 1;
+                        // grid-row: 4 / span 1;
+
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-end;
+
+                        input{
+                            background: $c;
+                            color: $d;
+                            padding: .6em;
+                            cursor: pointer;
+                        }
+                        input:hover{
+                            background:$f;
+                        }
+                    }
+
+                    /* Chrome, Safari, Edge, Opera */
+                    input::-webkit-outer-spin-button,
+                    input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                    }
+
+                    /* Firefox */
+                    input[type=number] {
+                    -moz-appearance: textfield;
+                    }
+                    }
+
+                }
             }
 
         }
@@ -394,7 +506,7 @@ body{
                 font-size: 15px;
             }
             span:nth-child(2){
-                padding-bottom: 4.5em;
+                padding-bottom: 2.5em;
                 padding-top: 1em;
             }
             a{
