@@ -91,15 +91,18 @@ function register($link, $data){
     if (count($previousUser) > 0){ return false; }
 
 
+    $password = htmlspecialchars($data["password"], ENT_QUOTES, 'UTF-8');
+    $username = htmlspecialchars($data["username"], ENT_QUOTES, 'UTF-8');
+
     $salt = generateSalt();
-    $hash = sha1($data['password'] . $salt);
+    $hash = sha1($password . $salt);
     $isAdmin = 0;
 
     // Provided by Joseph Walton-Rivers for ce154
     $stmt = $link->prepare("INSERT INTO users(uname, pass, salt, is_admin) values (?,?,?,?)");
     if ( !$stmt ) {die("could not prepare statement: " . $link->errno . ", error: " . $link->error);}
     
-    $result = $stmt->bind_param("sssi", $data['username'], $hash, $salt, $isAdmin);
+    $result = $stmt->bind_param("sssi", $username, $hash, $salt, $isAdmin);
     if ( !$result ) {die("could not bind params: " . $stmt->error);}
 
     if ( !$stmt->execute() ) {die("couldn't execute statement");}
@@ -109,7 +112,7 @@ function register($link, $data){
 }
 function checkForUser($link, $data){
 
-    $username = $data["username"];
+    $username = htmlspecialchars($data["username"], ENT_QUOTES, 'UTF-8');
     $records = array();
 
     $query = "SELECT id, uname, pass, salt, is_admin FROM users where uname = ?";
@@ -137,17 +140,14 @@ function login($link, $data){
     $username = $previousUser[0]["uname"];
     $hash = $previousUser[0]["pass"];
     $salt = $previousUser[0]["salt"];
-    $password = $data["password"];
+    $password = htmlspecialchars($data["password"], ENT_QUOTES, 'UTF-8');
     $isAdmin = $previousUser[0]["is_admin"] == 1 ? true : false;
 
     if ($hash == sha1($password . $salt)){
         //echo "right password!";
         $_SESSION["username"] = $username;
         $_SESSION["userID"] = $previousUser[0]["id"];
-        if($isAdmin){
-            $_SESSION["isAdmin"] = $isAdmin;
-        }
-
+        if($isAdmin){$_SESSION["isAdmin"] = $isAdmin;}
         return true;
     }else{
         //echo "wrong password";
@@ -155,18 +155,13 @@ function login($link, $data){
     }
 }
 function filterGenreRating($link, $genre, $rating){
+    $genre = htmlspecialchars($genre, ENT_QUOTES, 'UTF-8');
+    $rating = htmlspecialchars($rating, ENT_QUOTES, 'UTF-8');
+
     $genreBool = false;
     $ratingBool = false;
-    if(isset($genre)){
-        if($genre != ""){
-            $genreBool = true;
-        }
-    }
-    if(isset($rating)){
-        if($rating == "on"){
-            $ratingBool = true;
-        }
-    }
+    if(isset($genre)){ if($genre != ""){ $genreBool = true; } }
+    if(isset($rating)){ if($rating == "on"){ $ratingBool = true; }  }
 
     if(!$genreBool and !$ratingBool){return [];}
 
@@ -199,6 +194,8 @@ function filterGenreRating($link, $genre, $rating){
 
 }
 function filterSearch($link, $keyword){
+    $keyword = htmlspecialchars($keyword, ENT_QUOTES, 'UTF-8');
+
     $returnArr = [];
     if($keyword == ""){
         echo "No search keyword<br>";
@@ -215,28 +212,16 @@ function filterSearch($link, $keyword){
     if ( !$stmt->execute() ) {die("couldn't execute statement");}
 
     $results = $stmt->get_result();
-    // $temp = $results->fetch_assoc();
-
-    // return $returnArr = [];
-
-    // if(mysqli_num_rows($temp) > 0){
         
     while ( $row = $results->fetch_assoc() ) {
         $returnArr[] = $row;
     }
-    // while ( $row = $results->fetch_array(MYSQLI_NUM) ) {
-    //     // foreach ($row as $r) {
-    //     //     echo $r . "<br>";
-    //     // }
-    //     // echo var_dump($row);
-    //     $returnArr[] = $row;
-    // }
-    // }
 
     return $returnArr;
-    //return [];
 }
 function addBookmark($link, $userID, $gameID){
+    $userID = htmlspecialchars($userID, ENT_QUOTES, 'UTF-8');
+    $gameID = htmlspecialchars($gameID, ENT_QUOTES, 'UTF-8');
 
     $query = "INSERT into bookmarks (user_id, game_id) VALUES (?, ?);";
 
@@ -252,6 +237,8 @@ function addBookmark($link, $userID, $gameID){
 
 }
 function removeBookmark($link, $userID, $gameID){
+    $userID = htmlspecialchars($userID, ENT_QUOTES, 'UTF-8');
+    $gameID = htmlspecialchars($gameID, ENT_QUOTES, 'UTF-8');
 
     $query = "DELETE FROM bookmarks where user_id = ? and game_id = ?";
 
@@ -277,15 +264,11 @@ function getBookmarks($conn){
 
     $_SESSION["bookmark"] = [];
     foreach ($result as $id) {
-        // $_SESSION["bookmark"][] = $id;
         $_SESSION["bookmark"][$id["id"]] = false;
-        
     }
     foreach ($bookmarkResult as $pair) {
-
         if($pair["user_id"] == $_SESSION["userID"]){
             $_SESSION["bookmark"][$pair["game_id"]] = true;
-
         }
     }
 }
@@ -301,16 +284,17 @@ function getReviews($conn){
         while($row = mysqli_fetch_assoc($result)){
 
             $returnArr[] = $row;
-            // echo var_dump($row);
         }
     }
     return $returnArr;
-
-    // echo var_dump($result);
-
 }
 function createReview($conn, $title, $body, $rating, $gameID){
     if(!isset($_SESSION["userID"])){ return false;}
+    $userID = htmlspecialchars($_SESSION["userID"], ENT_QUOTES, 'UTF-8');
+    $gameID = htmlspecialchars($gameID, ENT_QUOTES, 'UTF-8');
+    $rating = htmlspecialchars($rating, ENT_QUOTES, 'UTF-8');
+    $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
+    $body = htmlspecialchars($body, ENT_QUOTES, 'UTF-8');
 
     $query = "INSERT INTO reviews (user_id, game_id, rating, title, review) VALUES (?, ?, ?, ?, ?);";
 
@@ -327,6 +311,7 @@ function createReview($conn, $title, $body, $rating, $gameID){
 }
 function deleteReview($conn, $reviewID){
     if(!isset($_SESSION["userID"])){ return false;}
+    $reviewID = htmlspecialchars($reviewID, ENT_QUOTES, 'UTF-8');
 
     $query = "DELETE FROM reviews WHERE id = ?";
 
@@ -342,6 +327,8 @@ function deleteReview($conn, $reviewID){
 }
 function hasReview($conn, $userID, $gameID){
     if(!isset($userID) || !isset($gameID)){ return false;}
+    $userID = htmlspecialchars($userID, ENT_QUOTES, 'UTF-8');
+    $gameID = htmlspecialchars($gameID, ENT_QUOTES, 'UTF-8');
 
     $query = "SELECT user_id, game_id FROM reviews";
     $result = mysqli_query($conn, $query);
@@ -365,6 +352,11 @@ function hasReview($conn, $userID, $gameID){
 }
 function addGame($conn, $title, $image, $genre, $rating, $description){
     if(!isset($_SESSION["userID"]) || !isset($_SESSION["isAdmin"])){ return false;}
+    $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
+    $image = htmlspecialchars($image, ENT_QUOTES, 'UTF-8');
+    $genre = htmlspecialchars($genre, ENT_QUOTES, 'UTF-8');
+    $rating = htmlspecialchars($rating, ENT_QUOTES, 'UTF-8');
+    $description = htmlspecialchars($description, ENT_QUOTES, 'UTF-8');
 
     $query = "INSERT INTO games (title, image, genre, rating, description) VALUES (?, ?, ?, ?, ?);";
     
