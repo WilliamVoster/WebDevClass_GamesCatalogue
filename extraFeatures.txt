@@ -1,0 +1,15 @@
+* Added icons for rating and genre on description page
+  - with color-changing/appropriate rating (from red to green)
+
+* Clicking on the genre icon on the description page ==> filters games by genre
+
+* Added sorting by 80+rating
+
+* Possible to register new users
+
+
+
+If you were wondering about what the javascript is for, 
+I used it as a replacement for the default scrolling feature.
+This way the scrolling is uniform across all browsers, 
+and it also allows me to remove the un-styleable scroll-slider normally located to the right.
