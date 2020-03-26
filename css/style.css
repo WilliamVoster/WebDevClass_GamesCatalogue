@@ -934,6 +934,11 @@ body footer {
   color: #666;
 }
 
+body footer a {
+  color: #666;
+  text-decoration: underline;
+}
+
 body h1.userPage {
   margin: 100px auto 0 auto;
   font-size: 4em;

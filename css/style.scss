@@ -829,6 +829,10 @@ body{
         background: $c;
         color: $f;
         // padding-bottom: 200px;
+        a{
+            color: $f;
+            text-decoration: underline;
+        }
     }
 
     h1.userPage{
